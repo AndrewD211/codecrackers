@@ -60,15 +60,18 @@ window.addEventListener('message', function(event) {
 function showHistoryEra(eraId, btn) {
   const allEras = document.querySelectorAll('.history-era');
   const allTabs = document.querySelectorAll('.history-tab');
+
   allEras.forEach(era => era.classList.remove('active'));
   allTabs.forEach(tab => tab.classList.remove('active'));
+
   document.getElementById(eraId).classList.add('active');
   btn.classList.add('active');
 
-  // Resize panel after switching era
-  const contentPanel = document.querySelector('.content-panel');
-  if (contentPanel) {
-    contentPanel.style.height = 'auto';
+  // Smooth scroll to top of content panel for clarity
+  const panel = document.querySelector('.content-panel');
+  if (panel) {
+    panel.scrollTo({ top: 0, behavior: 'smooth' });
+    panel.style.height = 'auto'; // Maintain your original resize logic
   }
 }
 
