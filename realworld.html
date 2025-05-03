@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodeCrackers - Encryption in the Real World</title>
+  <link rel="stylesheet" href="styles.css" />
+
+</head>
+<body>
+   <!-- Hamburger -->
+   <div id="menu-toggle" onclick="toggleMenu()">☰</div>
+
+   <!-- Slide-in Nav -->
+   <div id="side-menu" class="side-menu">
+     <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">×</a>
+     <a href="index.html">Home</a>
+     <a href="intro.html">Introduction</a>
+     <a href="caesarcipher.html">Caesar Cipher</a>
+     <a href="substitutioncipher.html">Substitution Cipher</a>
+     <a href="vigenerecipher.html">Vigenère Cipher</a>
+     <a href="review.html">Review & Quizzes</a>
+     <a href="realworld.html">Real World Encryption</a>
+     <a href="game.html">RapidCipher</a>
+     <a href="resources.html">Resources</a>
+   </div>
+  <header>
+    <h1>Encryption in the Real World</h1>
+  </header>
+ 
+  <div class="module-window">
+    <aside class="sidebar-nav">
+      <button onclick="showSection('protect', this)" class="active">How Encryption Protects You</button>
+      <button onclick="showSection('realworld', this)">Encryption in Action</button>
+      <button onclick="showSection('next', this)">Where You Can Go Next</button>
+    </aside>
+    <div class="content-panel">
+      <div id="protect" class="section active">
+        <h2>How Encryption Protects You</h2>
+        <p>Every time you send a message, log into a website, or save a file in the cloud, encryption is quietly working behind the scenes to keep your information safe.</p>
+        <p><strong>Messaging Apps:</strong> Apps like WhatsApp, iMessage, and Signal use end-to-end encryption so that only you and your recipient can read your messages — not even the app itself can peek.</p>
+        <p><strong>Websites:</strong> That little lock icon in your browser means you're using HTTPS — your connection is encrypted. This prevents eavesdropping or password theft on public Wi-Fi.</p>
+        <p><strong>Cloud Storage & Banks:</strong> Services like Google Drive and Dropbox encrypt your files. Banks use encryption to protect your transactions and account data. Password managers like Bitwarden and 1Password rely on advanced algorithms like AES-256.</p>
+      </div>
+
+      <div id="realworld" class="section">
+        <h2>Encryption in Action</h2>
+        <p>Encryption is everywhere. It’s what keeps your Face ID secure, protects your location history, and ensures your credit card details don’t fly around the internet in plain text.</p>
+        <p>Modern encryption uses complex math to scramble information. Algorithms like RSA, ECC (elliptic curve cryptography), and SHA-256 hashes are the backbone of today’s digital security.</p>
+        <p>You’ve already learned the foundational ideas: shifting letters, creating one-to-one mappings, and using keys. That same thinking powers the real systems used by governments, corporations, and developers worldwide.</p>
+      </div>
+
+      <div id="next" class="section">
+        <h2>Where You Can Go Next</h2>
+        <p>If encryption excites you, there’s so much more to learn:</p>
+        <ul>
+          <li><strong>Cybersecurity:</strong> Protecting networks, writing secure code, penetration testing</li>
+          <li><strong>Cryptography:</strong> Studying and designing new ciphers, learning about public/private key systems</li>
+          <li><strong>Ethical Hacking:</strong> Using your skills to expose vulnerabilities and improve security</li>
+        </ul>
+        <p>From Caesar to Vigenère, you’ve built a foundation. What comes next? Algorithms like RSA, zero-knowledge proofs, blockchain cryptography, and even quantum encryption.</p>
+        <p><strong>Keep going.</strong> You’re just getting started.</p>
+      </div>
+    </div>
+  </div>
+    
+  <footer>
+    <p>CodeCrackers &copy; 2025</p>
+  </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

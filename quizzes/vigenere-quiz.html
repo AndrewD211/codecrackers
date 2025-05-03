@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vigenère Cipher Quiz</title>
+  <link rel="stylesheet" href="quiz-styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <h1>Vigenère Cipher Quiz</h1>
+  <form id="quizForm" style="display: flex; flex-direction: column; min-height: 100vh;">
+    <div id="result"></div>
+    <p id="hoverNote" class="hidden" style="text-align:center; font-size:0.95rem; color:#555;">
+      Hover over any question after submitting to see the correct answer.
+    </p>
+    <div id="questionContainer" style="flex-grow: 1;">
+
+      <div class="question">
+        <h3>What is the key difference between a Caesar cipher and a Vigenère cipher?</h3>
+        <label><input type="radio" name="q1" value="B"> Vigenère shifts each letter using a different letter from a keyword</label><br>
+        <label><input type="radio" name="q1" value="A"> Vigenère uses numbers instead of letters</label><br>
+        <label><input type="radio" name="q1" value="C"> Vigenère encrypts in binary</label><br>
+        <label><input type="radio" name="q1" value="D"> Vigenère always uses a shift of 3</label>
+      </div>
+
+      <div class="question">
+        <h3>What happens when the keyword is shorter than the message?</h3>
+        <label><input type="radio" name="q2" value="C"> The keyword is repeated to match the message length</label><br>
+        <label><input type="radio" name="q2" value="A"> The keyword is discarded</label><br>
+        <label><input type="radio" name="q2" value="B"> The message is shortened to match</label><br>
+        <label><input type="radio" name="q2" value="D"> The message is encrypted without a key</label>
+      </div>
+
+      <div class="question">
+        <h3>If the keyword is “KEY”, how many different Caesar-style shifts are used in the encryption?</h3>
+        <label><input type="radio" name="q3" value="C"> 3</label><br>
+        <label><input type="radio" name="q3" value="A"> 1</label><br>
+        <label><input type="radio" name="q3" value="B"> 2</label><br>
+        <label><input type="radio" name="q3" value="D"> It depends on the length of the message</label>
+      </div>
+
+      <div class="question">
+        <h3>What is the encrypted form of “HELLO” using the keyword “KEY”?</h3>
+        <label><input type="radio" name="q4" value="A"> RIJVS</label><br>
+        <label><input type="radio" name="q4" value="B"> KHOOR</label><br>
+        <label><input type="radio" name="q4" value="C"> HELLO</label><br>
+        <label><input type="radio" name="q4" value="D"> VIGEN</label>
+      </div>
+
+      <div class="question">
+        <h3>What does the letter “K” represent in a Vigenère cipher?</h3>
+        <label><input type="radio" name="q5" value="B"> Shift by 10</label><br>
+        <label><input type="radio" name="q5" value="A"> Shift by 11</label><br>
+        <label><input type="radio" name="q5" value="C"> Shift by 13</label><br>
+        <label><input type="radio" name="q5" value="D"> Shift by 8</label>
+      </div>
+
+      <div class="question">
+        <h3>Which of the following is a strength of the Vigenère cipher?</h3>
+        <label><input type="radio" name="q6" value="C"> It hides letter frequencies better than Caesar or substitution ciphers</label><br>
+        <label><input type="radio" name="q6" value="A"> It’s impossible to break</label><br>
+        <label><input type="radio" name="q6" value="B"> It uses binary encoding</label><br>
+        <label><input type="radio" name="q6" value="D"> It’s easy to guess the key</label>
+      </div>
+
+      <div class="question">
+        <h3>Which scenario makes the Vigenère cipher more secure?</h3>
+        <label><input type="radio" name="q7" value="C"> Using a long, random keyword</label><br>
+        <label><input type="radio" name="q7" value="A"> Using a very short keyword</label><br>
+        <label><input type="radio" name="q7" value="B"> Using a common English word</label><br>
+        <label><input type="radio" name="q7" value="D"> Using numbers instead of letters</label>
+      </div>
+
+      <div class="question">
+        <h3>Which method is commonly used to break the Vigenère cipher?</h3>
+        <label><input type="radio" name="q8" value="B"> Frequency analysis combined with keyword length estimation</label><br>
+        <label><input type="radio" name="q8" value="A"> Rainbow table attack</label><br>
+        <label><input type="radio" name="q8" value="C"> Caesar brute-force</label><br>
+        <label><input type="radio" name="q8" value="D"> Dictionary attack</label>
+      </div>
+
+      <div class="question">
+        <h3>If the keyword is “ABC”, how are the letters shifted?</h3>
+        <label><input type="radio" name="q9" value="B"> Shift by 0, 1, 2 repeatedly</label><br>
+        <label><input type="radio" name="q9" value="A"> No shift</label><br>
+        <label><input type="radio" name="q9" value="C"> Shift by 1, 2, 3 repeatedly</label><br>
+        <label><input type="radio" name="q9" value="D"> Shift by 26, 1, 2</label>
+      </div>
+
+      <div class="question">
+        <h3>What does “polyalphabetic” mean in the context of the Vigenère cipher?</h3>
+        <label><input type="radio" name="q10" value="C"> It uses multiple Caesar shifts based on a keyword</label><br>
+        <label><input type="radio" name="q10" value="A"> It uses uppercase and lowercase letters</label><br>
+        <label><input type="radio" name="q10" value="B"> It switches alphabets based on numbers</label><br>
+        <label><input type="radio" name="q10" value="D"> It uses symbols and punctuation</label>
+      </div>
+
+    </div>
+
+    <button type="button" onclick="gradeQuiz()">Submit Answers</button>
+  </form>
+
+  <script>
+    const answers = {
+      q1: "B",
+      q2: "C",
+      q3: "C",
+      q4: "A",
+      q5: "B",
+      q6: "C",
+      q7: "C",
+      q8: "B",
+      q9: "B",
+      q10: "C"
+    };
+  </script>
+  <script src="quiz-enhancer.js"></script>
+  <audio id="partySound" src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg"></audio>
+
+</body>
+</html>

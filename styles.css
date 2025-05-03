@@ -1,0 +1,595 @@
+/* Base Styles */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: #f0f4f8;
+  color: #1e1e1e;
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2, h3, h4 {
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  background-color: #1c1c2e;
+  padding: 1.25rem 2rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+  color: #ffc857;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.toggle-container {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Sections */
+.module-section {
+  background-color: white;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+  transition: background-color 0.3s;
+}
+
+.module-section ul {
+  padding-left: 1.5rem;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background-color: #2a4d69;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #1e3d58;
+}
+
+/* Sidebar & Diagram */
+.sidebar {
+  background-color: #ddeaf6;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-left: 4px solid #5893d4;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.diagram {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #eef;
+  text-align: center;
+  border: 1px dashed #aaa;
+  font-style: italic;
+  color: #555;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 4rem;
+}
+
+/* Dashboard Layout */
+.dashboard {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.sidebar-nav {
+  flex: 0 0 200px;
+  background: #ddeaf6;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: background-color 0.3s;
+}
+
+.sidebar-nav a {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.sidebar-nav a:hover {
+  text-decoration: underline;
+}
+
+/* =====================
+   Module Window Layout
+===================== */
+.module-window {
+  display: flex;
+  max-width: 1000px;
+  margin: 2rem auto;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.module-window .sidebar-nav {
+  width: 240px;
+  background-color: #2c3e50;
+  color: #fff;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.module-window .sidebar-nav button {
+  padding: 1rem;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-bottom: 1px solid #444;
+  color: #ecf0f1;
+  transition: background 0.2s, color 0.2s;
+}
+
+.module-window .sidebar-nav button:hover,
+.module-window .sidebar-nav button.active {
+  background-color: #34495e;
+  font-weight: bold;
+  color: #fff;
+}
+
+.module-window .content-panel {
+  padding: 2rem;
+  flex-grow: 1;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+/* Toggle Switch */
+.toggle-container button {
+  background: #ffc857;
+  color: #000;
+  font-weight: bold;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.toggle-container button:hover {
+  background: #e5b64f;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .toggle-container {
+    position: static;
+    transform: none;
+    margin-top: 1rem;
+  }
+}
+
+/* Horizontal History Tabs */
+.history-tab {
+  background: none;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #2c3e50;
+  border-bottom: 3px solid transparent;
+  margin-right: 1rem;
+}
+
+.history-tab.active {
+  border-bottom: 3px solid #2c3e50;
+  font-weight: bold;
+}
+
+.history-era {
+  display: none;
+}
+
+.history-era.active {
+  display: block;
+}
+/* Quiz tab */
+.quiz-tab {
+  background: none;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #2c3e50;
+  border-bottom: 3px solid transparent;
+  margin-right: 1rem;
+  transition: border-color 0.3s, font-weight 0.3s;
+}
+
+.quiz-tab.active {
+  border-bottom: 3px solid #2c3e50;
+  font-weight: bold;
+}
+
+
+/* Modern Header */
+header {
+  background: linear-gradient(145deg, #fdfdfd, #f2f2f2);
+  padding: 2rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border-radius: 0 0 12px 12px;
+}
+
+header h1 {
+  font-family: 'Lato', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+/* Sleek Navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  margin: 1.5rem auto 2.5rem auto;
+  max-width: 960px;
+}
+
+.navbar a {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar a:hover {
+  background-color: #e0c67d;
+  color: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* Add a sticky, frosted-glass navbar effect */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease;
+}
+
+/* Slide-in Sidebar Navigation */
+#menu-toggle {
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 1rem;
+  background: #333;
+  color: #fff;
+  position: fixed;
+  top: 1.5rem;
+  left: 1rem;
+  z-index: 1001;
+  border-radius: 4px;
+}
+
+.side-menu {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  background-color: #2c3e50;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 80px; /* space so Home isn't hidden */
+}
+
+.side-menu a {
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #ecf0f1;
+  display: block;
+  transition: 0.3s;
+}
+
+.side-menu a:hover {
+  background-color: #34495e;
+}
+
+.side-menu .closebtn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 2rem;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Hide hamburger when menu is open */
+body.menu-open #menu-toggle {
+  display: none;
+}
+
+/* Practice blocks */
+.practice-block {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #fefefe;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.blurred-answer {
+  filter: blur(6px);
+  transition: filter 0.3s ease;
+  display: inline-block;
+  pointer-events: none;
+}
+
+.blur-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.blur-wrapper:hover .blurred-answer {
+  animation: revealBlur 1.5s forwards;
+}
+
+@keyframes revealBlur {
+  0% { filter: blur(6px); }
+  100% { filter: blur(0); }
+}
+
+
+
+/* Quiz Styles */
+label.correct {
+  background-color: #e0f8e9;
+  border: 1px solid #2ecc71;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+}
+
+label.incorrect {
+  background-color: #fdecea;
+  border: 1px solid #e74c3c;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+}
+
+.icon {
+  margin-left: 6px;
+  font-weight: bold;
+}
+
+#result {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: #2c3e50;
+  text-align: center;
+}
+.correct-hover {
+  background-color: #e0f8e9;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.incorrect-selected {
+  background-color: #fdecea;
+  border-radius: 4px;
+}
+
+/* ===============================
+   DARK MODE: Base + Containers
+================================= */
+body.dark-mode {
+  background-color: #0d1117;
+  color: #c9d1d9;
+}
+
+/* Header & Navbar */
+body.dark-mode header {
+  background: none !important;
+  background-color: #12171f !important;
+  color: #c9d1d9;
+  padding: 2rem 0;
+  border-bottom: 1px solid #30363d;
+  box-shadow: none;
+}
+
+body.dark-mode .navbar {
+  background-color: #161b22;
+  border-bottom: 1px solid #30363d;
+}
+
+/* Main Content Containers */
+body.dark-mode .module-window,
+body.dark-mode .module-section,
+body.dark-mode .practice-block {
+  background-color: #1c2128;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+}
+
+/* Quizzes */
+body.dark-mode .question {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  box-shadow: 0 0 8px rgba(255,255,255,0.03);
+}
+
+/* Sidebar / Navigation */
+body.dark-mode .sidebar-nav,
+body.dark-mode .side-menu {
+  background-color: #161b22;
+  color: #c9d1d9;
+  border-color: #30363d;
+}
+
+body.dark-mode .sidebar-nav button {
+  color: #c9d1d9;
+  border-bottom: 1px solid #30363d;
+}
+
+body.dark-mode .sidebar-nav button:hover,
+body.dark-mode .sidebar-nav button.active {
+  background-color: #21262d;
+  color: #ffffff;
+}
+
+
+
+/* Toggle Button Styling */
+.toggle-container {
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+.toggle-container button {
+  background: #ffc857;
+  color: #000;
+  font-weight: bold;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.toggle-container button:hover {
+  background: #e5b64f;
+}
+
+/* Setting menu*/
+.settings-menu {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 999;
+}
+
+.settings-menu button {
+  background: #21262d;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+  padding: 0.4rem 0.6rem;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.settings-dropdown {
+  display: none;
+  flex-direction: column;
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+  color: #c9d1d9;
+}
+
+.settings-dropdown label {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+/* DARK MODE: Only change text and button color */
+body.dark-mode {
+  color: #f0f0f0;
+}
+
+body.dark-mode h1,
+body.dark-mode h2 {
+  color: #ffffff;
+}
+
+body.dark-mode button {
+  background-color: #1e3d58; /* dark blue */
+  color: #ffffff;
+}
+

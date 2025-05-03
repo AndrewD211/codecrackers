@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodeCrackers - Vigenère Cipher</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Hamburger -->
+  <div id="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <!-- Slide-in Nav -->
+  <div id="side-menu" class="side-menu">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">×</a>
+    <a href="index.html">Home</a>
+    <a href="intro.html">Introduction</a>
+    <a href="caesarcipher.html">Caesar Cipher</a>
+    <a href="substitutioncipher.html">Substitution Cipher</a>
+    <a href="vigenerecipher.html">Vigenère Cipher</a>
+    <a href="review.html">Review & Quizzes</a>
+    <a href="realworld.html">Real World Encryption</a>
+    <a href="game.html">RapidCipher</a>
+    <a href="resources.html">Resources</a>
+  </div>
+
+  <header>
+    <h1>Vigenère Cipher Module</h1>
+  </header>
+
+  <div class="module-window">
+    <aside class="sidebar-nav">
+      <button onclick="showSection('intro', this)" class="active">Introduction</button>
+      <button onclick="showSection('encrypt', this)">Encrypting</button>
+      <button onclick="showSection('decrypt', this)">Decrypting</button>
+      <button onclick="showSection('details', this)">Key Details</button>
+      <button onclick="showSection('practice', this)">Try It Yourself</button>
+      <button onclick="showSection('tips', this)">Tips & Fun Facts</button>
+    </aside>
+
+    <div class="content-panel">
+      <!-- INTRO -->
+      <div id="intro" class="section active">
+        <h2>Introduction to the Vigenère Cipher</h2>
+        <p>The Vigenère cipher is a polyalphabetic substitution cipher that uses a keyword to determine how each letter in a message is encrypted. Instead of one fixed shift, each letter in the keyword controls how the corresponding letter in the message is shifted.</p>
+        <h3>What You'll Learn</h3>
+        <ul>
+          <li>How the Vigenère cipher works</li>
+          <li>How to encrypt using a keyword</li>
+          <li>How to decrypt a Vigenère cipher</li>
+          <li>Why it was once considered unbreakable</li>
+        </ul>
+        <h3>How It Works</h3>
+        <p>Each letter of the keyword is aligned with the plaintext message. That letter determines how far to shift the matching letter in the message.</p>
+        <p><strong>Keyword:</strong> KEY</p>
+        <p><strong>Message:</strong> HELLO → RIJVS</p>
+      </div>
+
+      <!-- ENCRYPT -->
+      <div id="encrypt" class="section">
+        <h2>Encrypting</h2>
+        <p><strong>Step-by-step:</strong></p>
+        <ul>
+          <li>Pick a keyword (e.g., KEY)</li>
+          <li>Repeat the keyword to match the length of the message</li>
+          <li>For each letter, apply the Caesar shift corresponding to the keyword letter</li>
+        </ul>
+        <p><strong>Example:</strong> Encrypt CODES with KEY</p>
+        <p>Keyword: K E Y K E</p>
+        <p>Message: C O D E S</p>
+        <p>Ciphertext: R I J V S</p>
+
+        <div class="practice-block">
+          <h3>Practice Problems – Encrypting</h3>
+          <ul>
+            <li><strong>Encrypt:</strong> CODES using keyword KEY</li>
+            <li><strong>Encrypt:</strong> SECRETS using keyword LOCK</li>
+          </ul>
+          <h4>Answer Key</h4>
+          <ul>
+            <li><span class="blur-wrapper">CODES → <span class="blurred-answer">RIJVS</span></span></li>
+            <li><span class="blur-wrapper">SECRETS → <span class="blurred-answer">DIPVMHLP</span></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DECRYPT -->
+      <div id="decrypt" class="section">
+        <h2>Decrypting</h2>
+        <p><strong>Step-by-step:</strong></p>
+        <ul>
+          <li>Use the same keyword</li>
+          <li>Repeat to match length of ciphertext</li>
+          <li>Shift letters backwards using the keyword shift</li>
+        </ul>
+        <p><strong>Example:</strong> Decrypt RIJVS with KEY</p>
+        <p>Keyword: K E Y K E</p>
+        <p>Plaintext: H E L L O</p>
+
+        <div class="practice-block">
+          <h3>Practice Problems – Decrypting</h3>
+          <ul>
+            <li><strong>Decrypt:</strong> RIJVS using keyword KEY</li>
+            <li><strong>Decrypt:</strong> DIPVMHLP using keyword LOCK</li>
+          </ul>
+          <h4>Answer Key</h4>
+          <ul>
+            <li><span class="blur-wrapper">RIJVS → <span class="blurred-answer">CODES</span></span></li>
+            <li><span class="blur-wrapper">DIPVMHLP → <span class="blurred-answer">SECRETS</span></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DETAILS -->
+      <div id="details" class="section">
+        <h2>Key Details</h2>
+        <ul>
+          <li>The keyword determines the shift for each character</li>
+          <li>Longer, more random keywords make the cipher stronger</li>
+          <li>It’s resistant to frequency analysis — much harder to break</li>
+        </ul>
+        <p>The Vigenère cipher was considered unbreakable for over 300 years due to its complexity compared to Caesar and simple substitution ciphers.</p>
+      </div>
+
+      <!-- PRACTICE TOOL -->
+      <div id="practice" class="section">
+        <div class="module-section">
+          <h2>🔧 Try the Vigenère Cipher!</h2>
+          <p>Enter a message and a keyword to encrypt or decrypt it.</p>
+
+          <label for="vig-input">Your Message:</label>
+          <input type="text" id="vig-input" placeholder="HELLO" />
+
+          <br><br>
+
+          <label for="vig-keyword">Keyword:</label>
+          <input type="text" id="vig-keyword" placeholder="KEY" />
+
+          <br><br>
+
+          <label for="vig-mode">Mode:</label>
+          <select id="vig-mode">
+            <option value="encrypt">Encrypt</option>
+            <option value="decrypt">Decrypt</option>
+          </select>
+
+          <br><br>
+
+          <button onclick="runVigenere()">Run Cipher</button>
+
+          <div class="diagram" id="vig-output">
+            Output will appear here...
+          </div>
+        </div>
+      </div>
+
+      <!-- TIPS -->
+      <div id="tips" class="section">
+        <h2>Tips & Fun Facts</h2>
+        <ul>
+          <li>Vary your keyword to avoid patterns</li>
+          <li>Don't use common words — they're easier to crack</li>
+        </ul>
+        <p><strong>Fun Fact:</strong> The Vigenère cipher was once called “le chiffre indéchiffrable” — the indecipherable cipher.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>CodeCrackers &copy; 2025</p>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodeCrackers - Caesar Cipher</title>
+  <link rel="stylesheet" href="styles.css" />
+  
+</head>
+
+<body>
+
+   <!-- Hamburger -->
+   <div id="menu-toggle" onclick="toggleMenu()">☰</div>
+
+   <!-- Slide-in Nav -->
+   <div id="side-menu" class="side-menu">
+     <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">×</a>
+     <a href="index.html">Home</a>
+     <a href="intro.html">Introduction</a>
+     <a href="caesarcipher.html">Caesar Cipher</a>
+     <a href="substitutioncipher.html">Substitution Cipher</a>
+     <a href="vigenerecipher.html">Vigenère Cipher</a>
+     <a href="review.html">Review & Quizzes</a>
+     <a href="realworld.html">Real World Encryption</a>
+     <a href="game.html">RapidCipher</a>
+     <a href="resources.html">Resources</a>
+   </div>
+  <header>
+    <h1>Caesar Cipher Module</h1>
+  </header>
+
+  <div class="module-window">
+    <aside class="sidebar-nav">
+      <button onclick="showSection('intro', this)" class="active">Introduction</button>
+      <button onclick="showSection('encrypt', this)">Encrypting</button>
+      <button onclick="showSection('decrypt', this)">Decrypting</button>
+      <button onclick="showSection('details', this)">Key Details</button>
+      <button onclick="showSection('practice', this)">Try It Yourself</button>
+      <button onclick="showSection('tips', this)">Tips & Fun Facts</button>
+    </aside>
+    <div class="content-panel">
+      <div id="intro" class="section active">
+        <h2>Caesar Cipher: A Journey Through Time</h2>
+        <p>People have been hiding messages for thousands of years. From secret military plans scratched into wax tablets to encrypted emails flying through cyberspace, the goal is the same: keep information safe from prying eyes.</p>
+        <p>The Caesar cipher is one of the very first methods ever used to do that. It's simple — but it planted the seeds for all the complex encryption we depend on today.</p>
+        <h3>What You'll Learn</h3>
+        <ul>
+          <li>How the Caesar cipher works</li>
+          <li>How to encrypt a basic message</li>
+          <li>How to decrypt a Caesar cipher</li>
+          <li>Why this ancient method still matters (even if it's easy to break now)</li>
+        </ul>
+        <h3>How the Caesar Cipher Works</h3>
+        <p>The Caesar cipher is what's called a substitution cipher. Each letter is replaced by another letter a fixed number of places down the alphabet.</p>
+        <table>
+          <tr><th>Plaintext</th><th>Shift</th><th>Ciphertext</th></tr>
+          <tr><td>HELLO</td><td>+3</td><td>KHOOR</td></tr>
+        </table>
+        <p>Pretty straightforward, right? You'll see why it works (and how to break it) in a second.</p>
+      </div>
+      <div id="encrypt" class="section">
+        <h2>Encrypting a Message (Step-by-Step)</h2>
+        <ul>
+          <li>Pick a number between 1 and 25. (This is your shift.)</li>
+          <li>Shift each letter forward by that number.</li>
+          <li>Write down your new encrypted message.</li>
+        </ul>
+        <p><strong>Example:</strong> Encrypt ATTACK with a shift of 4:</p>
+        <ul>
+          <li>A → E</li>
+          <li>T → X</li>
+          <li>T → X</li>
+          <li>A → E</li>
+          <li>C → G</li>
+          <li>K → O</li>
+        </ul>
+        <p><strong>Final Ciphertext:</strong> EXXEGO</p>
+        <div class="practice-block">
+          <h3>Practice Problems – Encrypting</h3>
+          <ul>
+            <li><strong>Encrypt:</strong> PUZZLE with a shift of +5</li>
+            <li><strong>Encrypt:</strong> MYSTERY with a shift of +7</li>
+          </ul>
+        
+          <h4>Answer Key</h4>
+          <ul>
+            <li><span class="blur-wrapper">PUZZLE → <span class="blurred-answer">UZEZQJ</span></span></li>
+            <li><span class="blur-wrapper">MYSTERY → <span class="blurred-answer">TFZAVFZ</span></span></li>
+          </ul>
+        </div>
+        
+      </div>
+      <div id="decrypt" class="section">
+        <h2>Decrypting a Message (Step-by-Step)</h2>
+        <ul>
+          <li>Know the shift that was used.</li>
+          <li>Shift each letter backward by that number.</li>
+          <li>Recover the original message.</li>
+        </ul>
+        <p><strong>Example:</strong> Decrypt DWWDFN with a shift of 3:</p>
+        <ul>
+          <li>D → A</li>
+          <li>W → T</li>
+          <li>W → T</li>
+          <li>D → A</li>
+          <li>F → C</li>
+          <li>N → K</li>
+        </ul>
+        <p><strong>Plaintext:</strong> ATTACK</p>
+        <div class="practice-block">
+          <h3>Practice Problems – Decrypting</h3>
+          <ul>
+            <li><strong>Decrypt:</strong> EBIIL using a shift of -23</li>
+            <li><strong>Decrypt:</strong> GZPV using a shift of -25</li>
+          </ul>
+        
+          <h4>Answer Key</h4>
+          <ul>
+            <li><span class="blur-wrapper">EBIIL → <span class="blurred-answer">HELLO</span></span></li>
+            <li><span class="blur-wrapper">GZPV → <span class="blurred-answer">HAWQ</span></span></li>
+          </ul>
+        </div>
+        
+      </div>
+      <div id="details" class="section">
+        <h2>Key Details & Real-World Connection</h2>
+        <ul>
+          <li>Only letters are shifted. Spaces, numbers, and punctuation stay the same.</li>
+          <li>The alphabet wraps around — after Z comes A again.</li>
+          <li>Shifts of 0 or 26 do nothing. (Not very secret.)</li>
+        </ul>
+        <p>While the Caesar cipher itself isn’t secure by today’s standards (you can break it by trying all 25 shifts), the idea of systematically changing information is a foundation for modern encryption.</p>
+        <p>Complex algorithms like AES and RSA are built on much more advanced versions of this basic concept: scramble it, but in a way you can unscramble if you know the key.</p>
+      </div>
+      <div id="practice" class="section">
+        <div class="module-section">
+          <h2>🔧 Try the Caesar Cipher!</h2>
+          <p>Type a message and choose a shift to encrypt or decrypt.</p>
+        
+          <label for="caesar-mode">Mode:</label>
+          <select id="caesar-mode">
+            <option value="encrypt">Encrypt</option>
+            <option value="decrypt">Decrypt</option>
+          </select>
+        
+          <br><br>
+        
+          <label for="caesar-input">Your Message:</label>
+          <input type="text" id="caesar-input" placeholder="HELLO WORLD" />
+        
+          <br><br>
+        
+          <label for="caesar-shift">Shift:</label>
+          <input type="number" id="caesar-shift" value="3" min="1" max="25" />
+        
+          <br><br>
+        
+          <button onclick="runCaesar()">Run Cipher</button>
+        
+          <div class="diagram" id="caesar-output">
+            Output will appear here...
+          </div>
+        </div>
+      </div>
+      <div id="tips" class="section">
+        <h2>Tips and Fun Facts</h2>
+        <ul>
+          <li>If you don’t know the shift, just try every possible shift. (There are only 25.)</li>
+          <li>Common English letters like E, T, and A show up a lot. Spotting them can help you guess the shift.</li>
+        </ul>
+        <p><strong>Fun Fact:</strong> Julius Caesar is rumored to have used a shift of 3 for his personal messages. (So if you're stuck, 3 is a good guess.)</p>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>CodeCrackers &copy; 2025</p>
+  </footer>
+  <script src="scripts.js"></script>
+</body>
+</html>

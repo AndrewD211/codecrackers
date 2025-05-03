@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .question {
+    margin-bottom: 1.5rem;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .question h3 {
+    margin-top: 0;
+  }
+  
+  button {
+    padding: 0.5rem 1.2rem;
+    background: #2c3e50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+    display: block;
+    margin: 2rem auto 0;
+    position: sticky;
+    bottom: 1rem;
+    z-index: 10;
+  }
+  
+  #result {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .correct-hover {
+    background-color: #a2f2c2;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .incorrect-selected {
+    background-color: #f99;
+    border-radius: 4px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  /* === PARTY SHAKE EFFECT === */
+.shake {
+    animation: shake 0.5s;
+    animation-iteration-count: 10;
+  }
+  
+  @keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+  

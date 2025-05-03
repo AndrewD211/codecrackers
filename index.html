@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeCrackers - Learn Encryption</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .carousel-container {
+      position: relative;
+      margin: 3rem 0;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px;
+    }
+
+    .carousel-button {
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      background-color: #2a4d69;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to CodeCrackers</h1>
+  </header>
+
+  <main>
+    <section class="module-section" style="text-align: center;">
+      <h2>Learn to Crack Codes — the Fun Way</h2>
+      <p>Encryption might sound complex, but you’ll pick it up fast — especially with hands-on examples, fun visuals, and a few classic ciphers.</p>
+      <p>Ready to unlock the secrets of secret codes?</p>
+
+      <div class="carousel-container">
+        <div class="carousel" id="carousel">
+          <button class="carousel-button" data-index="0" data-url="intro.html">Start Learning</button>
+          <button class="carousel-button" data-index="1" data-url="review.html">Quiz Yourself</button>
+          <button class="carousel-button" data-index="2" data-url="game.html">Play RapidCipher</button>
+        </div>
+      </div>
+
+    
+    </section>
+  </main>
+
+  <footer>
+    <p>CodeCrackers &copy; 2025</p>
+  </footer>
+
+  
+  <script src="scripts.js"></script>
+  
+</body>
+</html>

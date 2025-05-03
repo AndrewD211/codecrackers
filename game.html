@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeCrackers - RapidCipher Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+     <!-- Hamburger -->
+  <div id="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <!-- Slide-in Nav -->
+  <div id="side-menu" class="side-menu">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">×</a>
+    <a href="index.html">Home</a>
+    <a href="intro.html">Introduction</a>
+    <a href="caesarcipher.html">Caesar Cipher</a>
+    <a href="substitutioncipher.html">Substitution Cipher</a>
+    <a href="vigenerecipher.html">Vigenère Cipher</a>
+    <a href="review.html">Review & Quizzes</a>
+    <a href="realworld.html">Real World Encryption</a>
+    <a href="game.html">RapidCipher</a>
+    <a href="resources.html">Resources</a>
+  </div>
+
+  <header>
+    <h1>CodeCrackers: RapidCipher</h1>
+  </header>
+
+  <main>
+    <section class="module-section">
+      <h2>Welcome to RapidCipher</h2>
+      <p>Think you're ready to crack some codes? This isn't a quiz — it's a race against the clock. RapidCipher is your final challenge. You'll be given a series of encrypted messages. Your goal is to figure out which cipher was used and decrypt each message before time runs out.</p>
+
+      <h3>How It Works</h3>
+      <ul>
+        <li>Each level gets harder</li>
+        <li>You must solve each level to move to the next</li>
+        <li>The game is timed — complete all levels before the countdown hits zero</li>
+        <li>Hints are available, but they cost you time</li>
+      </ul>
+
+      <button onclick="loadGame('game/index.html')">▶ Start RapidCipher</button>
+    </section>
+
+    <section id="game-container" style="margin-top: 2rem; border: 1px solid #ccc; padding: 1rem; display: none;">
+      <p><em>Loading game...</em></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>CodeCrackers &copy; 2025</p>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

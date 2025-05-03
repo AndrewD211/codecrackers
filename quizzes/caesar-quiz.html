@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Caesar Cipher Quiz</title>
+  <link rel="stylesheet" href="quiz-styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <h1>Caesar Cipher Quiz</h1>
+
+  <form id="quizForm" style="display: flex; flex-direction: column; min-height: 100vh;">
+    <div id="result"></div>
+    <p id="hoverNote" class="hidden" style="text-align:center; font-size:0.95rem; color:#555;">
+      Hover over any question after submitting to see the correct answer.
+    </p>
+
+    <div id="questionContainer" style="flex-grow: 1;">
+      <div class="question">
+        <h3>What does a Caesar cipher do to each letter in a message?</h3>
+        <label><input type="radio" name="q1" value="C"> Shifts it by a fixed number of places</label><br>
+        <label><input type="radio" name="q1" value="A"> Scrambles it randomly</label><br>
+        <label><input type="radio" name="q1" value="B"> Substitutes it with a number</label><br>
+        <label><input type="radio" name="q1" value="D"> Encrypts it using a keyword</label>
+      </div>
+      
+      <div class="question">
+        <h3>What is the Caesar shift in this example? HELLO → KHOOR</h3>
+        <label><input type="radio" name="q2" value="B"> 3</label><br>
+        <label><input type="radio" name="q2" value="A"> 1</label><br>
+        <label><input type="radio" name="q2" value="C"> 5</label><br>
+        <label><input type="radio" name="q2" value="D"> 7</label>
+      </div>
+      
+      <div class="question">
+        <h3>Which of the following shifts is identical to a shift of 0?</h3>
+        <label><input type="radio" name="q3" value="C"> 26</label><br>
+        <label><input type="radio" name="q3" value="A"> 25</label><br>
+        <label><input type="radio" name="q3" value="B"> 1</label><br>
+        <label><input type="radio" name="q3" value="D"> 13</label>
+      </div>
+      
+      <div class="question">
+        <h3>Encrypt the word DOG using a Caesar shift of +2.</h3>
+        <label><input type="radio" name="q4" value="B"> FQI</label><br>
+        <label><input type="radio" name="q4" value="A"> FRJ</label><br>
+        <label><input type="radio" name="q4" value="C"> EQI</label><br>
+        <label><input type="radio" name="q4" value="D"> FOI</label>
+      </div>
+      
+      <div class="question">
+        <h3>Decrypt the ciphertext EBIIL using a Caesar shift of -3.</h3>
+        <label><input type="radio" name="q5" value="A"> HELLO</label><br>
+        <label><input type="radio" name="q5" value="B"> DCDII</label><br>
+        <label><input type="radio" name="q5" value="C"> BZFFI</label><br>
+        <label><input type="radio" name="q5" value="D"> ABCDE</label>
+      </div>
+      
+      <div class="question">
+        <h3>What happens if you apply a Caesar cipher with shift 3 to the letter Z?</h3>
+        <label><input type="radio" name="q6" value="C"> C</label><br>
+        <label><input type="radio" name="q6" value="A"> B</label><br>
+        <label><input type="radio" name="q6" value="B"> D</label><br>
+        <label><input type="radio" name="q6" value="D"> A</label>
+      </div>
+      
+      <div class="question">
+        <h3>Which of the following is NOT true about the Caesar cipher?</h3>
+        <label><input type="radio" name="q7" value="C"> It changes each letter randomly</label><br>
+        <label><input type="radio" name="q7" value="A"> It uses a fixed shift for the entire message</label><br>
+        <label><input type="radio" name="q7" value="B"> It wraps around the alphabet</label><br>
+        <label><input type="radio" name="q7" value="D"> It’s easy to break by brute force</label>
+      </div>
+      
+      <div class="question">
+        <h3>How many possible Caesar shift values are there (excluding 0)?</h3>
+        <label><input type="radio" name="q8" value="A"> 25</label><br>
+        <label><input type="radio" name="q8" value="B"> 24</label><br>
+        <label><input type="radio" name="q8" value="C"> 26</label><br>
+        <label><input type="radio" name="q8" value="D"> 13</label>
+      </div>
+      
+      <div class="question">
+        <h3>Which letter appears most often in English text and is useful when cracking a Caesar cipher?</h3>
+        <label><input type="radio" name="q9" value="B"> E</label><br>
+        <label><input type="radio" name="q9" value="A"> T</label><br>
+        <label><input type="radio" name="q9" value="C"> A</label><br>
+        <label><input type="radio" name="q9" value="D"> Z</label>
+      </div>
+      
+      <div class="question">
+        <h3>You intercepted this Caesar-encrypted message: OLSSV. What is the original word, assuming a shift of -7?</h3>
+        <label><input type="radio" name="q10" value="C"> HELLO</label><br>
+        <label><input type="radio" name="q10" value="A"> JGMMQ</label><br>
+        <label><input type="radio" name="q10" value="B"> TRRZZ</label><br>
+        <label><input type="radio" name="q10" value="D"> DEDDD</label>
+      </div>
+      
+    </div>
+
+    <button type="button" onclick="gradeQuiz()">Submit Answers</button>
+  </form>
+
+  <script>
+    const answers = {
+      q1: "C",
+      q2: "B",
+      q3: "C",
+      q4: "B",
+      q5: "A",
+      q6: "C",
+      q7: "C",
+      q8: "A",
+      q9: "B",
+      q10: "C"
+    };
+  </script>
+  <script src="quiz-enhancer.js"></script>
+  <audio id="partySound" src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg"></audio>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodeCrackers - Review & Quizzes</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+     <!-- Hamburger -->
+  <div id="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <!-- Slide-in Nav -->
+  <div id="side-menu" class="side-menu">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">×</a>
+    <a href="index.html">Home</a>
+    <a href="intro.html">Introduction</a>
+    <a href="caesarcipher.html">Caesar Cipher</a>
+    <a href="substitutioncipher.html">Substitution Cipher</a>
+    <a href="vigenerecipher.html">Vigenère Cipher</a>
+    <a href="review.html">Review & Quizzes</a>
+    <a href="realworld.html">Real World Encryption</a>
+    <a href="game.html">RapidCipher</a>
+    <a href="resources.html">Resources</a>
+  </div>
+  <header>
+    <h1>Review & Quizzes</h1>
+  </header>
+  <div class="module-window">
+    <aside class="sidebar-nav">
+      <button onclick="showSection('practice', this)" class="active">Review & Practice</button>
+      <button onclick="showSection('instructions', this)">Quiz Instructions</button>
+      <button onclick="showSection('launch', this)">Launch Quizzes</button>
+    </aside>
+    <div class="content-panel">
+      <div id="practice" class="section active">
+        <h2>Review & Practice</h2>
+        <h3>Caesar Cipher</h3>
+        <ul>
+          <li><strong>Encrypt:</strong> ZEBRAS using a shift of +4</li>
+          <li><strong>Decrypt:</strong> OLSSV using a shift of -7</li>
+        </ul>
+        <h3>Substitution Cipher</h3>
+        <ul>
+          <li><strong>Encrypt:</strong> BEAD with A→Q, B→W, C→E...</li>
+          <li><strong>Decrypt:</strong> TWRT using that same map</li>
+        </ul>
+        <h3>Vigenère Cipher</h3>
+        <ul>
+          <li><strong>Encrypt:</strong> CODES using keyword KEY</li>
+          <li><strong>Decrypt:</strong> RIJVS using keyword KEY</li>
+        </ul>
+      </div>
+      <div id="instructions" class="section">
+        <h2>Quiz Instructions</h2>
+        <p>Each quiz includes 10 multiple choice questions. Choose a quiz below. It will load in a window right here on the page.</p>
+        <ul>
+          <li>Only one quiz can run at a time</li>
+          <li>Make sure JavaScript is enabled in your browser</li>
+        </ul>
+      </div>
+      <div id="launch" class="section">
+        <h2>Launch a Quiz</h2>
+        <div style="border-bottom: 2px solid #ccc; margin-bottom: 1rem;">
+          <button class="quiz-tab active" onclick="showQuizTab('caesar-quiz', this)">Caesar</button>
+          <button class="quiz-tab" onclick="showQuizTab('substitution-quiz', this)">Substitution</button>
+          <button class="quiz-tab" onclick="showQuizTab('vigenere-quiz', this)">Vigenère</button>
+        </div>
+        
+        <div id="caesar-quiz" class="quiz-panel active">
+          <iframe src="quizzes/caesar-quiz.html" width="100%" style="min-height: 600px; border: none;"></iframe>
+        </div>
+        <div id="substitution-quiz" class="quiz-panel" style="display: none;">
+          <iframe src="quizzes/substitution-quiz.html" width="100%" style="min-height: 600px; border: none;"></iframe>
+        </div>
+        <div id="vigenere-quiz" class="quiz-panel" style="display: none;">
+          <iframe src="quizzes/vigenere-quiz.html" width="100%" style="min-height: 600px; border: none;"></iframe>
+        </div>        
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>CodeCrackers &copy; 2025</p>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodeCrackers - Introduction to Encryption</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+
+    /* Existing module window */
+    .module-window {
+      display: flex;
+      max-width: 1000px;
+      margin: 5rem auto 2rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .sidebar-nav {
+      width: 240px;
+      background-color: #2c3e50;
+      color: #fff;
+      border-right: 1px solid #ddd;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-nav button {
+      padding: 1rem;
+      text-align: left;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 1rem;
+      border-bottom: 1px solid #444;
+      color: #ecf0f1;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .sidebar-nav button:hover,
+    .sidebar-nav button.active {
+      background-color: #34495e;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .content-panel {
+      padding: 2rem;
+      flex-grow: 1;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    ul {
+      margin-left: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hamburger -->
+  <div id="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <!-- Slide-in Nav -->
+  <div id="side-menu" class="side-menu">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">×</a>
+    <a href="index.html">Home</a>
+    <a href="intro.html">Introduction</a>
+    <a href="caesarcipher.html">Caesar Cipher</a>
+    <a href="substitutioncipher.html">Substitution Cipher</a>
+    <a href="vigenerecipher.html">Vigenère Cipher</a>
+    <a href="review.html">Review & Quizzes</a>
+    <a href="realworld.html">Real World Encryption</a>
+    <a href="game.html">RapidCipher</a>
+    <a href="resources.html">Resources</a>
+  </div>
+
+  <header>
+    <h1>Welcome to CodeCrackers</h1>
+  </header>
+
+  <div class="module-window">
+    <aside class="sidebar-nav">
+      <button onclick="showSection('what', this)" class="active">Encryption: What Is It?</button>
+      <button onclick="showSection('history', this)">A History of Secrets</button>
+      <button onclick="showSection('why', this)">Does Encryption Matter?</button>
+      <button onclick="showSection('start', this)">A Starting Point</button>
+    </aside>
+
+    <div class="content-panel">
+      <div id="what" class="section active">
+        <h2>What Is Encryption?</h2>
+        <p>Encryption is the process of turning readable information into something that looks like nonsense — unless you know the secret to reverse it. It’s a way of keeping messages private, whether it’s a love letter or your bank password.</p>
+        <p><strong>It sounds technical, but at its core?</strong> It’s about hiding things in plain sight — and revealing them only to the right people.</p>
+      </div>
+
+      <div id="history" class="section">
+        <h2>A History of Secrets</h2>
+        <div style="border-bottom: 2px solid #ccc; margin-bottom: 1rem;">
+          <button class="history-tab active" onclick="showHistoryEra('era1', this)">Ancient & Classical</button>
+          <button class="history-tab" onclick="showHistoryEra('era2', this)">Renaissance → Industrial Age</button>
+          <button class="history-tab" onclick="showHistoryEra('era3', this)">Modern Era</button>
+        </div>
+
+        <div id="era1" class="history-era active">
+          <h3>Ancient & Classical Encryption</h3>
+          <ul>
+            <li><strong>Egypt (1900 BCE):</strong> Tomb inscriptions used symbolic transformations to obscure meaning.</li>
+            <li><strong>Sparta:</strong> The “Scytale” was a tool for wrapping a message around a rod to reveal the proper sequence.</li>
+            <li><strong>Rome (50 BCE):</strong> Julius Caesar popularized the shift cipher that now bears his name.</li>
+          </ul>
+          <p>These early forms of encryption were simple, but they served their purpose — to keep military and political information secret.</p>
+        </div>
+
+        <div id="era2" class="history-era">
+          <h3>Encryption in the Renaissance to Industrial Age</h3>
+          <ul>
+            <li><strong>1400s:</strong> Leon Battista Alberti invented the cipher disk — a tool for polyalphabetic encryption.</li>
+            <li><strong>1500s–1600s:</strong> European diplomats began using ciphers in international correspondence.</li>
+            <li><strong>1700s–1800s:</strong> New ciphers emerged alongside mechanical tools like Jefferson's wheel cipher.</li>
+          </ul>
+          <p>This era marks the transition from basic hand-written codes to devices and methods that allowed for more secure, layered encryption.</p>
+        </div>
+
+        <div id="era3" class="history-era">
+          <h3>Encryption in the Modern Era</h3>
+          <ul>
+            <li><strong>WWII:</strong> The German Enigma machine was cracked by Allied codebreakers like Alan Turing, a turning point in both cryptography and computing.</li>
+            <li><strong>1970s:</strong> The U.S. developed the Data Encryption Standard (DES), one of the first digital encryption standards.</li>
+            <li><strong>Today:</strong> Algorithms like AES, RSA, and ECC power everything from secure messaging to blockchain systems.</li>
+          </ul>
+          <p>Modern encryption blends math, computer science, and real-time security — it’s the reason you can shop online or send private messages safely.</p>
+        </div>
+      </div>
+
+      <div id="why" class="section">
+        <h2>Why Encryption Matters (More Than Ever)</h2>
+        <ul>
+          <li>It protects your identity, privacy, and finances</li>
+          <li>It powers secure messaging and online shopping</li>
+          <li>It helps journalists, activists, and everyday users stay safe</li>
+        </ul>
+        <p>Without encryption, the internet would be a dangerous place. Learning how it works gives you a superpower — the power to understand (and one day maybe build) digital defenses.</p>
+      </div>
+
+      <div id="start" class="section">
+        <h2>Where to Start</h2>
+        <p>This site will walk you through the basics of classical encryption, one cipher at a time:</p>
+        <ul>
+          <li><strong><a href="caesarcipher.html">Caesar Cipher</a>:</strong> A simple letter shift that’s easy to learn and fun to break.</li>
+          <li><strong><a href="substitutioncipher.html">Substitution Cipher</a>:</strong> A more flexible cipher that lets you swap letters using a custom map.</li>
+          <li><strong><a href="vigenerecipher.html">Vigenère Cipher</a>:</strong> A clever cipher that uses keywords to change the shift for each letter.</li>
+        </ul>
+        <p>Each module includes examples, tips, practice problems, and even a game to test your skills.</p>
+        <p>🔍 Ready to begin? Pick a cipher above — or jump straight to the <a href="review.html">Review & Quizzes</a> section.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
+
+
