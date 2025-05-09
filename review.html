@@ -5,6 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CodeCrackers - Review & Quizzes</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .quiz-button {
+      background: none;
+      border: none;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #2c3e50;
+      border-bottom: 3px solid transparent;
+      margin-right: 1rem;
+    }
+
+    .quiz-button:hover,
+    .quiz-button.active {
+      border-bottom: 3px solid #2c3e50;
+      font-weight: bold;
+    }
+
+    #quiz-container {
+      margin-top: 2rem;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      display: none;
+    }
+  </style>
 </head>
 <body>
      <!-- Hamburger -->
@@ -29,53 +54,94 @@
   <div class="module-window">
     <aside class="sidebar-nav">
       <button onclick="showSection('practice', this)" class="active">Review & Practice</button>
-      <button onclick="showSection('instructions', this)">Quiz Instructions</button>
       <button onclick="showSection('launch', this)">Launch Quizzes</button>
     </aside>
     <div class="content-panel">
       <div id="practice" class="section active">
         <h2>Review & Practice</h2>
+        <p>This section lets you review all the ciphers you've learned so far. You'll find recaps, practice problems, and challenge puzzles to refresh your skills before taking the quizzes.</p>
+
         <h3>Caesar Cipher</h3>
+        <p>The Caesar Cipher is a simple letter shift. Each letter in your message is pushed forward (or backward) in the alphabet by a fixed number. Don’t forget: the alphabet wraps around — so shifting Z by +1 gives A.</p>
+        <p>Common mistake: forgetting to wrap around after Z or before A. Also, spaces and punctuation stay the same.</p>
         <ul>
-          <li><strong>Encrypt:</strong> ZEBRAS using a shift of +4</li>
-          <li><strong>Decrypt:</strong> OLSSV using a shift of -7</li>
+          <li><strong>Encrypt:</strong> ZEBRAS with shift +4</li>
+          <li><strong>Decrypt:</strong> LIPPS with shift -4</li>
+          <li><strong>Encrypt:</strong> ATTACK AT DAWN with shift +11</li>
+          <li><strong>Decrypt (challenge):</strong> OLSSV (no shift given)</li>
         </ul>
+        <h4>Answer Key</h4>
+        <ul>
+          <li><span class="blur-wrapper">ZEBRAS → <span class="blurred-answer">DIFVEW</span></span></li>
+          <li><span class="blur-wrapper">LIPPS → <span class="blurred-answer">HELLO</span></span></li>
+          <li><span class="blur-wrapper">ATTACK AT DAWN → <span class="blurred-answer">LEELNX LE OLHY</span></span></li>
+          <li><span class="blur-wrapper">OLSSV → <span class="blurred-answer">HELLO</span></span></li>
+        </ul>
+
         <h3>Substitution Cipher</h3>
+        <p>Each letter is replaced by another letter based on a custom map — no shifting involved. The same letter always maps to the same substitute, so patterns can give you away.</p>
+        <p>Watch out: no duplicates in the map. Spaces and symbols don’t change.</p>
         <ul>
-          <li><strong>Encrypt:</strong> BEAD with A→Q, B→W, C→E...</li>
-          <li><strong>Decrypt:</strong> TWRT using that same map</li>
+          <li><strong>Encrypt:</strong> BEAD using A→Q, B→W, C→E, D→R, E→T...</li>
+          <li><strong>Decrypt:</strong> TWRT using the same map</li>
+          <li><strong>Challenge:</strong> Decrypt ZTRRZ. Hint: E is the most common letter in English.</li>
         </ul>
+        <h4>Answer Key</h4>
+        <ul>
+          <li><span class="blur-wrapper">BEAD → <span class="blurred-answer">WTRQ</span></span></li>
+          <li><span class="blur-wrapper">TWRT → <span class="blurred-answer">BEAD</span></span></li>
+          <li><span class="blur-wrapper">ZTRRZ → <span class="blurred-answer">LEVEL</span></span></li>
+        </ul>
+
         <h3>Vigenère Cipher</h3>
+        <p>This is a Caesar Cipher on steroids — you use a keyword to apply different shifts to each letter. A = 0, B = 1, ..., Z = 25. The keyword repeats to match the message length.</p>
+        <p>Common mistake: misaligning the keyword with the message or shifting the wrong direction when decrypting.</p>
         <ul>
           <li><strong>Encrypt:</strong> CODES using keyword KEY</li>
           <li><strong>Decrypt:</strong> RIJVS using keyword KEY</li>
+          <li><strong>Challenge:</strong> Decrypt LXFOPVEFRNHR. Message was “ATTACKATDAWN”. Guess the keyword.</li>
         </ul>
-      </div>
-      <div id="instructions" class="section">
-        <h2>Quiz Instructions</h2>
-        <p>Each quiz includes 10 multiple choice questions. Choose a quiz below. It will load in a window right here on the page.</p>
+        <h4>Answer Key</h4>
         <ul>
-          <li>Only one quiz can run at a time</li>
-          <li>Make sure JavaScript is enabled in your browser</li>
+          <li><span class="blur-wrapper">CODES → <span class="blurred-answer">MSBOW</span></span></li>
+          <li><span class="blur-wrapper">RIJVS → <span class="blurred-answer">HELLO</span></span></li>
+          <li><span class="blur-wrapper">LXFOPVEFRNHR → <span class="blurred-answer">ATTACKATDAWN (keyword: LEMON)</span></span></li>
+        </ul>
+
+        <h3>Mixed Cipher Puzzle</h3>
+        <p>Each of the following was encrypted using one of the three ciphers above. Can you identify which cipher was used and decrypt it?</p>
+        <ul>
+          <li><code>EXXEGO</code></li>
+          <li><code>MVSQ</code></li>
+          <li><code>RIJVS</code></li>
+        </ul>
+        <h4>Answer Key</h4>
+        <ul>
+          <li><span class="blur-wrapper">EXXEGO → <span class="blurred-answer">ATTACK (Caesar, +4)</span></span></li>
+          <li><span class="blur-wrapper">MVSQ → <span class="blurred-answer">BEAD (Substitution)</span></span></li>
+          <li><span class="blur-wrapper">RIJVS → <span class="blurred-answer">HELLO (Vigenère, keyword: KEY)</span></span></li>
         </ul>
       </div>
       <div id="launch" class="section">
-        <h2>Launch a Quiz</h2>
-        <div style="border-bottom: 2px solid #ccc; margin-bottom: 1rem;">
-          <button class="quiz-tab active" onclick="showQuizTab('caesar-quiz', this)">Caesar</button>
-          <button class="quiz-tab" onclick="showQuizTab('substitution-quiz', this)">Substitution</button>
-          <button class="quiz-tab" onclick="showQuizTab('vigenere-quiz', this)">Vigenère</button>
+        <details>
+          <summary><strong>Quiz Instructions</strong></summary>
+          <p>Each quiz includes 10 multiple choice questions. When you're ready, launch one below.</p>
+          <ul>
+            <li>Only one quiz can run at a time</li>
+            <li>JavaScript must be enabled</li>
+            <li>Your score will appear once submitted</li>
+            <li>You can retake the quiz anytime</li>
+          </ul>
+        </details>
+
+        <div style="margin-top: 2rem;">
+          <button class="quiz-button" onclick="loadQuiz('quizzes/caesar-quiz.html', this)">Caesar Cipher Quiz</button>
+          <button class="quiz-button" onclick="loadQuiz('quizzes/substitution-quiz.html', this)">Substitution Cipher Quiz</button>
+          <button class="quiz-button" onclick="loadQuiz('quizzes/vigenere-quiz.html', this)">Vigenère Cipher Quiz</button>
         </div>
-        
-        <div id="caesar-quiz" class="quiz-panel active">
-          <iframe src="quizzes/caesar-quiz.html" width="100%" style="min-height: 600px; border: none;"></iframe>
-        </div>
-        <div id="substitution-quiz" class="quiz-panel" style="display: none;">
-          <iframe src="quizzes/substitution-quiz.html" width="100%" style="min-height: 600px; border: none;"></iframe>
-        </div>
-        <div id="vigenere-quiz" class="quiz-panel" style="display: none;">
-          <iframe src="quizzes/vigenere-quiz.html" width="100%" style="min-height: 600px; border: none;"></iframe>
-        </div>        
+
+        <div id="quiz-container">
+          <p><em>Loading quiz...</em></p>
         </div>
       </div>
     </div>
@@ -85,5 +151,15 @@
   </footer>
 
   <script src="scripts.js"></script>
+
+  <script>
+    function loadQuiz(url, btn) {
+      document.querySelectorAll('.quiz-button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const container = document.getElementById("quiz-container");
+      container.style.display = "block";
+      container.innerHTML = `<iframe src="${url}" width="100%" height="600" style="border:none;"></iframe>`;
+    }
+  </script>
 </body>
 </html>

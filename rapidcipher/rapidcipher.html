@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RapidCipher Phase 1</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background: #0d0d0d;
+      color: #e0e0e0;
+      font-family: 'Courier New', Courier, monospace;
+      overflow-x: hidden;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    #grid {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      height: 1400px;
+      margin: auto;
+      background: radial-gradient(ellipse at center, #1f1f1f 0%, #0d0d0d 100%);
+      border: 1px solid #333;
+      border-radius: 1rem;
+    }
+    .node {
+      position: absolute;
+      padding: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      font-weight: bold;
+      border: 2px solid transparent;
+      width: 130px;
+    }
+    .node:hover {
+      transform: scale(1.05);
+    }
+    .caesar { background: #1e3a8a; border-color: #60a5fa; color: #fff; }
+    .substitution { background: #92400e; border-color: #fbbf24; color: #fff; }
+    .vigenere { background: #ff79c6; border-color: #ffbdf7; color: #000; }
+    .hint { background: #14532d; border-color: #4ade80; color: #fff; }
+
+    .panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 400px;
+      height: 100%;
+      background: #1a1a1a;
+      color: white;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.7);
+      padding: 2rem;
+      transition: right 0.3s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .panel.active {
+      right: 0;
+    }
+    .panel h2 {
+      margin-bottom: 1rem;
+    }
+    .panel .cipher-text {
+      background: #333;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+    }
+    .panel input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: none;
+      margin-bottom: 1rem;
+    }
+    .panel button {
+      background: #4ade80;
+      border: none;
+      padding: 0.75rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+    }
+    .overlay.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>RapidCipher</h1>
+  <div id="grid"></div>
+  <div class="overlay" id="overlay" onclick="closePanel()"></div>
+  <div class="panel" id="panel">
+    <h2 id="panelTitle"></h2>
+    <div class="cipher-text">Encrypted Text: <span id="cipherText"></span></div>
+    <input type="text" id="userInput" placeholder="Enter your answer" />
+    <button onclick="submitAnswer()">Submit</button>
+    <p id="feedback" style="margin-top:1rem;"></p>
+  </div>
+  <script>
+    let correctAnswer = '';
+    const caesarShift = 3;
+    const sampleWords = ["HELLO", "WORLD", "CIPHER", "MESSAGE", "ENCRYPT", "SECRET", "AGENT"];
+    const colorGroups = ['blue', 'green', 'orange'];
+    const unlockedHints = {};
+    const positions = [
+      { top: 100, left: 80 }, { top: 240, left: 180 }, { top: 380, left: 60 }, { top: 520, left: 160 },
+      { top: 100, left: 400 }, { top: 300, left: 360 }, { top: 500, left: 420 },
+      { top: 200, left: 660 }, { top: 400, left: 660 },
+      { top: 90, left: 800 }, { top: 200, left: 820 }, { top: 300, left: 800 },
+      { top: 400, left: 820 }, { top: 500, left: 800 }, { top: 600, left: 780 },
+      { top: 720, left: 400 }, { top: 800, left: 200 }, { top: 880, left: 500 }
+    ];
+    let posIndex = 0;
+
+    function caesarEncrypt(text, shift = caesarShift) {
+      return text.toUpperCase().replace(/[A-Z]/g, char =>
+        String.fromCharCode(((char.charCodeAt(0) - 65 + shift) % 26) + 65)
+      );
+    }
+    function substitutionEncrypt(text) {
+      const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const shuffled = [...alphabet].sort(() => 0.5 - Math.random()).join('');
+      const map = Object.fromEntries([...alphabet].map((c, i) => [c, shuffled[i]]));
+      return text.toUpperCase().replace(/[A-Z]/g, c => map[c] || c);
+    }
+    function vigenereEncrypt(text, keyword) {
+      keyword = keyword.toUpperCase();
+      let result = "";
+      for (let i = 0, j = 0; i < text.length; i++) {
+        const c = text[i].toUpperCase();
+        if (/[A-Z]/.test(c)) {
+          const k = keyword[j++ % keyword.length];
+          result += String.fromCharCode(((c.charCodeAt(0) + k.charCodeAt(0) - 130) % 26) + 65);
+        } else result += c;
+      }
+      return result;
+    }
+    function openPanel(type, cipher, answer) {
+      document.getElementById('panelTitle').innerText = `${type} Cipher`;
+      document.getElementById('cipherText').innerText = cipher;
+      correctAnswer = answer.toUpperCase();
+      document.getElementById('userInput').value = '';
+      document.getElementById('feedback').innerText = '';
+      document.getElementById('panel').classList.add('active');
+      document.getElementById('overlay').classList.add('active');
+    }
+    function closePanel() {
+      document.getElementById('panel').classList.remove('active');
+      document.getElementById('overlay').classList.remove('active');
+    }
+    function submitAnswer() {
+      const input = document.getElementById('userInput').value.trim().toUpperCase();
+      const feedback = document.getElementById('feedback');
+      feedback.innerText = input === correctAnswer ? '✔ Correct!' : '✖ Incorrect. Try again.';
+    }
+    function nodeClicked(label, group = null) {
+      if (group) {
+        unlockedHints[group] = true;
+        alert(`Hint for group "${group}" unlocked!`);
+      } else {
+        alert(`You clicked on ${label}`);
+      }
+    }
+    function addNode(label, type, group = null) {
+      const grid = document.getElementById('grid');
+      const div = document.createElement('div');
+      div.className = `node ${type.toLowerCase()}`;
+      div.innerText = label;
+      const pos = positions[posIndex++];
+      div.style.top = `${pos.top}px`;
+      div.style.left = `${pos.left}px`;
+      if (type === 'Hint') {
+        div.onclick = () => nodeClicked(label, group);
+      } else {
+        const word = sampleWords[Math.floor(Math.random() * sampleWords.length)];
+        const encrypted =
+          type === 'Caesar' ? caesarEncrypt(word) :
+          type === 'Substitution' ? substitutionEncrypt(word) :
+          vigenereEncrypt(word, 'KEY');
+        div.onclick = () => openPanel(type, encrypted, word);
+      }
+      grid.appendChild(div);
+    }
+    for (let i = 0; i < 4; i++) addNode(`Caesar ${String.fromCharCode(65+i)}`, 'Caesar', colorGroups[i % 3]);
+    for (let i = 0; i < 3; i++) addNode(`Substitution ${String.fromCharCode(65+i)}`, 'Substitution', colorGroups[i % 3]);
+    for (let i = 0; i < 2; i++) addNode(`Vigenère ${String.fromCharCode(65+i)}`, 'Vigenère', colorGroups[i % 3]);
+    for (let i = 0; i < 7; i++) addNode(`Hint ${i+1}`, 'Hint', colorGroups[i % 3]);
+  </script>
+</body>
+</html>

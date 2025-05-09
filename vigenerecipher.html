@@ -37,97 +37,178 @@
       <button onclick="showSection('decrypt', this)">Decrypting</button>
       <button onclick="showSection('details', this)">Key Details</button>
       <button onclick="showSection('practice', this)">Try It Yourself</button>
-      <button onclick="showSection('tips', this)">Tips & Fun Facts</button>
     </aside>
 
     <div class="content-panel">
-      <!-- INTRO -->
       <div id="intro" class="section active">
-        <h2>Introduction to the Vigenère Cipher</h2>
-        <p>The Vigenère cipher is a polyalphabetic substitution cipher that uses a keyword to determine how each letter in a message is encrypted. Instead of one fixed shift, each letter in the keyword controls how the corresponding letter in the message is shifted.</p>
-        <h3>What You'll Learn</h3>
+        <h2>Introduction: Shifting with a Keyword</h2>
+        <p>The Vigenère Cipher is like the Caesar Cipher — but smarter. Instead of shifting every letter the same amount, you use a keyword. Each letter in that keyword tells you how far to shift a letter in your message. That means the same letter in your message might get encrypted in different ways.</p>
+        <p>This makes the cipher much harder to crack using simple frequency analysis. For a long time, it was considered unbreakable — people even called it “le chiffre indéchiffrable,” or “the indecipherable cipher.”</p>
+      
+        <h3>What You’ll Learn</h3>
         <ul>
-          <li>How the Vigenère cipher works</li>
-          <li>How to encrypt using a keyword</li>
-          <li>How to decrypt a Vigenère cipher</li>
-          <li>Why it was once considered unbreakable</li>
+          <li>How to encrypt messages using a keyword</li>
+          <li>How to reverse the process and decrypt ciphertext</li>
+          <li>Why Vigenère ciphers are more secure than Caesar or substitution ciphers</li>
         </ul>
-        <h3>How It Works</h3>
-        <p>Each letter of the keyword is aligned with the plaintext message. That letter determines how far to shift the matching letter in the message.</p>
-        <p><strong>Keyword:</strong> KEY</p>
-        <p><strong>Message:</strong> HELLO → RIJVS</p>
+      
+        <h3>Think of It Like This:</h3>
+        <p>Imagine writing a message, but instead of using one fixed shift, you shift each letter based on a rotating sequence of numbers tied to your keyword. If your keyword is <code>KEY</code>, then the first letter of your message shifts by K, the second by E, the third by Y — then back to K, E, Y, and so on.</p>
+      
+        <p><strong>Let’s walk through it.</strong></p>
       </div>
+      
 
-      <!-- ENCRYPT -->
       <div id="encrypt" class="section">
-        <h2>Encrypting</h2>
-        <p><strong>Step-by-step:</strong></p>
+        <h2>Encrypting a Message</h2>
+
+        <p><strong>Goal:</strong> Use a keyword to apply a different Caesar shift to each letter in your message.</p>
+
+        <h3>What You Need</h3>
         <ul>
-          <li>Pick a keyword (e.g., KEY)</li>
-          <li>Repeat the keyword to match the length of the message</li>
-          <li>For each letter, apply the Caesar shift corresponding to the keyword letter</li>
+          <li>A message to encrypt (use capital letters)</li>
+          <li>A keyword (made of letters only — no spaces or symbols)</li>
         </ul>
-        <p><strong>Example:</strong> Encrypt CODES with KEY</p>
-        <p>Keyword: K E Y K E</p>
-        <p>Message: C O D E S</p>
-        <p>Ciphertext: R I J V S</p>
+
+        <h3>Step-by-Step</h3>
+        <ol>
+          <li>Write out your message. For example: <code>CODES</code></li>
+          <li>Repeat your keyword until it matches the message length. For example: keyword <code>KEY</code> becomes <code>KEYKE</code></li>
+          <li>Convert each keyword letter to a Caesar shift (A = 0, B = 1, ..., Z = 25)</li>
+          <li>Shift each message letter forward using the shift value from the corresponding keyword letter</li>
+          <li>The result is your encrypted message</li>
+        </ol>
+
+        <h3>Example</h3>
+        <p>
+          Message: <code>CODES</code><br>
+          Keyword: <code>KEYKE</code><br>
+          Shifts: K=10, E=4, Y=24, K=10, E=4<br>
+        </p>
+        <ul>
+          <li>C + 10 → M</li>
+          <li>O + 4 → S</li>
+          <li>D + 24 → B</li>
+          <li>E + 10 → O</li>
+          <li>S + 4 → W</li>
+        </ul>
+        <p><strong>Encrypted Output:</strong> <code>MSBOW</code></p>
 
         <div class="practice-block">
-          <h3>Practice Problems – Encrypting</h3>
+          <h3>Practice – Encrypt These</h3>
+          <p>Use the keyword <code>KEY</code> for both:</p>
           <ul>
-            <li><strong>Encrypt:</strong> CODES using keyword KEY</li>
-            <li><strong>Encrypt:</strong> SECRETS using keyword LOCK</li>
+            <li><strong>Encrypt:</strong> CODES</li>
+            <li><strong>Encrypt:</strong> SECRETS</li>
           </ul>
           <h4>Answer Key</h4>
           <ul>
-            <li><span class="blur-wrapper">CODES → <span class="blurred-answer">RIJVS</span></span></li>
+            <li><span class="blur-wrapper">CODES → <span class="blurred-answer">MSBOW</span></span></li>
             <li><span class="blur-wrapper">SECRETS → <span class="blurred-answer">DIPVMHLP</span></span></li>
           </ul>
         </div>
+
+        <h3>Try It Yourself</h3>
+        <p>Use the interactive tool below to try different messages and keywords. Make sure your keyword contains only letters!</p>
       </div>
 
-      <!-- DECRYPT -->
       <div id="decrypt" class="section">
-        <h2>Decrypting</h2>
-        <p><strong>Step-by-step:</strong></p>
+        <h2>Decrypting a Message</h2>
+      
+        <p><strong>Goal:</strong> Use the keyword to reverse the Vigenère encryption and retrieve the original message.</p>
+      
+        <h3>What You Need</h3>
         <ul>
-          <li>Use the same keyword</li>
-          <li>Repeat to match length of ciphertext</li>
-          <li>Shift letters backwards using the keyword shift</li>
+          <li>An encrypted message (ciphertext) in uppercase letters</li>
+          <li>The keyword used during encryption</li>
         </ul>
-        <p><strong>Example:</strong> Decrypt RIJVS with KEY</p>
-        <p>Keyword: K E Y K E</p>
-        <p>Plaintext: H E L L O</p>
-
+      
+        <h3>Step-by-Step</h3>
+        <ol>
+          <li>Write out the ciphertext. For example: <code>MSBOW</code></li>
+          <li>Repeat the keyword to match the length of the ciphertext. For example: keyword <code>KEY</code> becomes <code>KEYKE</code></li>
+          <li>Convert each keyword letter to its corresponding shift value (A=0, B=1, ..., Z=25)</li>
+          <li>For each letter in the ciphertext:
+            <ul>
+              <li>Determine the shift value from the corresponding keyword letter</li>
+              <li>Shift the ciphertext letter <strong>backward</strong> in the alphabet by the shift value</li>
+              <li>If the shift goes before 'A', wrap around to the end of the alphabet</li>
+            </ul>
+          </li>
+          <li>Compile the resulting letters to form the decrypted message</li>
+        </ol>
+      
+        <h3>Example</h3>
+        <p>
+          Ciphertext: <code>MSBOW</code><br>
+          Keyword: <code>KEYKE</code><br>
+          Shifts: K=10, E=4, Y=24, K=10, E=4
+        </p>
+        <ul>
+          <li>M (12) - K (10) = C (2)</li>
+          <li>S (18) - E (4) = O (14)</li>
+          <li>B (1) - Y (24) = D (3) [Since 1 - 24 = -23; -23 mod 26 = 3]</li>
+          <li>O (14) - K (10) = E (4)</li>
+          <li>W (22) - E (4) = S (18)</li>
+        </ul>
+        <p><strong>Decrypted Output:</strong> <code>CODES</code></p>
+      
         <div class="practice-block">
-          <h3>Practice Problems – Decrypting</h3>
+          <h3>Practice – Decrypt These</h3>
+          <p>Use the keyword <code>KEY</code> for both:</p>
           <ul>
-            <li><strong>Decrypt:</strong> RIJVS using keyword KEY</li>
-            <li><strong>Decrypt:</strong> DIPVMHLP using keyword LOCK</li>
+            <li><strong>Decrypt:</strong> MSBOW</li>
+            <li><strong>Decrypt:</strong> DIPVMHLP</li>
           </ul>
           <h4>Answer Key</h4>
           <ul>
-            <li><span class="blur-wrapper">RIJVS → <span class="blurred-answer">CODES</span></span></li>
+            <li><span class="blur-wrapper">MSBOW → <span class="blurred-answer">CODES</span></span></li>
             <li><span class="blur-wrapper">DIPVMHLP → <span class="blurred-answer">SECRETS</span></span></li>
           </ul>
         </div>
+      
+        <h3>Try It Yourself</h3>
+        <p>Use the tool in the Try It Yourself section to enter your own ciphertext and keyword. Experiment with different messages and keys to see how the decryption process works.</p>
       </div>
+      
 
-      <!-- DETAILS -->
       <div id="details" class="section">
-        <h2>Key Details</h2>
-        <ul>
-          <li>The keyword determines the shift for each character</li>
-          <li>Longer, more random keywords make the cipher stronger</li>
-          <li>It’s resistant to frequency analysis — much harder to break</li>
-        </ul>
-        <p>The Vigenère cipher was considered unbreakable for over 300 years due to its complexity compared to Caesar and simple substitution ciphers.</p>
+        <h2>Key Details and Common Pitfalls</h2>
+      
+        <h3>1. Each Letter is Encrypted Differently</h3>
+        <p>
+          The Vigenère Cipher uses a keyword to determine the shift for each letter in the plaintext. This means that the same letter can be encrypted differently depending on its position and the corresponding letter in the keyword. This polyalphabetic approach enhances security compared to monoalphabetic ciphers like the Caesar Cipher.
+        </p>
+      
+        <h3>2. Keyword Repetition Can Be a Weakness</h3>
+        <p>
+          If the keyword is short and the plaintext is long, the keyword will repeat multiple times. This repetition can introduce patterns in the ciphertext, making it susceptible to cryptanalysis methods such as the Kasiski examination, which can deduce the length of the keyword by identifying repeating sequences in the ciphertext.
+        </p>
+      
+        <h3>3. Frequency Analysis is Still a Threat</h3>
+        <p>
+          While the Vigenère Cipher was designed to obscure frequency patterns, it is not immune to frequency analysis. Once the keyword length is determined, the ciphertext can be divided accordingly, and frequency analysis can be applied to each segment. This can eventually lead to the discovery of the keyword and the decryption of the message.
+        </p>
+      
+        <h3>4. Non-Letter Characters Remain Unchanged</h3>
+        <p>
+          The Vigenère Cipher typically only encrypts alphabetic characters. Numbers, punctuation, and spaces are usually left unchanged. This can provide clues to the structure of the plaintext and potentially aid in cryptanalysis.
+        </p>
+      
+        <h3>5. Case Sensitivity</h3>
+        <p>
+          The cipher is case-insensitive, meaning it treats uppercase and lowercase letters the same. However, maintaining consistent casing (e.g., converting all letters to uppercase) before encryption and decryption ensures uniformity and avoids confusion.
+        </p>
+      
+        <h3>6. Key Management is Crucial</h3>
+        <p>
+          The security of the Vigenère Cipher heavily relies on the secrecy and randomness of the keyword. Using common words or phrases as keywords can make the cipher more vulnerable to attacks. It's essential to choose a strong, unpredictable keyword and keep it confidential.
+        </p>
       </div>
-
-      <!-- PRACTICE TOOL -->
+      
       <div id="practice" class="section">
         <div class="module-section">
-          <h2>🔧 Try the Vigenère Cipher!</h2>
+          <h2>Try the Vigenère Cipher!</h2>
           <p>Enter a message and a keyword to encrypt or decrypt it.</p>
 
           <label for="vig-input">Your Message:</label>
@@ -156,15 +237,7 @@
         </div>
       </div>
 
-      <!-- TIPS -->
-      <div id="tips" class="section">
-        <h2>Tips & Fun Facts</h2>
-        <ul>
-          <li>Vary your keyword to avoid patterns</li>
-          <li>Don't use common words — they're easier to crack</li>
-        </ul>
-        <p><strong>Fun Fact:</strong> The Vigenère cipher was once called “le chiffre indéchiffrable” — the indecipherable cipher.</p>
-      </div>
+   
     </div>
   </div>
 

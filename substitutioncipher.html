@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CodeCrackers - Substitution Cipher</title>
   <link rel="stylesheet" href="styles.css" />
-
 </head>
-<body>
-   <!-- Hamburger -->
-   <div id="menu-toggle" onclick="toggleMenu()">☰</div>
 
-   <!-- Slide-in Nav -->
-   <div id="side-menu" class="side-menu">
-     <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">×</a>
-     <a href="index.html">Home</a>
-     <a href="intro.html">Introduction</a>
-     <a href="caesarcipher.html">Caesar Cipher</a>
-     <a href="substitutioncipher.html">Substitution Cipher</a>
-     <a href="vigenerecipher.html">Vigenère Cipher</a>
-     <a href="review.html">Review & Quizzes</a>
-     <a href="realworld.html">Real World Encryption</a>
-     <a href="game.html">RapidCipher</a>
-     <a href="resources.html">Resources</a>
-   </div>
+<body>
+  <div id="menu-toggle" onclick="toggleMenu()">☰</div>
+  <div id="side-menu" class="side-menu">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">×</a>
+    <a href="index.html">Home</a>
+    <a href="intro.html">Introduction</a>
+    <a href="caesarcipher.html">Caesar Cipher</a>
+    <a href="substitutioncipher.html">Substitution Cipher</a>
+    <a href="vigenerecipher.html">Vigenère Cipher</a>
+    <a href="review.html">Review & Quizzes</a>
+    <a href="realworld.html">Real World Encryption</a>
+    <a href="game.html">RapidCipher</a>
+    <a href="resources.html">Resources</a>
+  </div>
+
   <header>
     <h1>Substitution Cipher Module</h1>
   </header>
+
+
+
   <div class="module-window">
     <aside class="sidebar-nav">
       <button onclick="showSection('intro', this)" class="active">Introduction</button>
@@ -35,121 +35,197 @@
       <button onclick="showSection('decrypt', this)">Decrypting</button>
       <button onclick="showSection('details', this)">Key Details</button>
       <button onclick="showSection('practice', this)">Try It Yourself</button>
-      <button onclick="showSection('tips', this)">Tips & Fun Facts</button>
     </aside>
     <div class="content-panel">
+
       <div id="intro" class="section active">
-        <h2>Introduction to the Substitution Cipher</h2>
-        <p>Substitution ciphers are a step up from Caesar ciphers. Instead of shifting letters in a predictable way, each letter is replaced with a unique, randomly chosen partner.</p>
-        <h3>What You'll Learn</h3>
+        <h2>Introduction: Encrypting by Replacing Letters</h2>
+        <p>The Substitution Cipher works by replacing each letter in a message with a different, specific letter. Unlike the Caesar Cipher, the shifts aren’t consistent. Every letter has its own assigned replacement.</p>
+        <p>This type of cipher is called a monoalphabetic substitution, meaning each letter in the plaintext maps to exactly one letter in the ciphertext.</p>
+        <p>Substitution ciphers are easy to create, but harder to solve than a Caesar cipher. Still, they’re vulnerable to something called frequency analysis — a method of breaking the code by looking at how often certain letters appear.</p>
+      
+        <h3>What You’ll Learn</h3>
         <ul>
-          <li>How a substitution cipher works</li>
-          <li>How to encrypt a message using a letter map</li>
-          <li>How to decrypt a substitution cipher</li>
-          <li>How to recognize patterns in substitution-based encryption</li>
+          <li>How to encrypt and decrypt using a substitution map</li>
+          <li>How to write and reverse a letter mapping</li>
+          <li>Why randomization matters for cipher strength</li>
         </ul>
-        <h3>How It Works</h3>
-        <p>Each letter of the alphabet is mapped to a unique replacement letter. The mapping is usually random and kept secret.</p>
-        <p><strong>Example Mapping:</strong> A→Q, B→M, C→Z, D→S, E→V, ...</p>
-        <p>To encrypt, replace each letter in your message using the mapping. To decrypt, use the reverse.</p>
+      
+        <h3>Think of It Like This:</h3>
+        <p>
+          Imagine taking a bag of Scrabble tiles and randomly swapping every letter for a different one. A becomes Q, B becomes M, C becomes Z. Then you write your message using the new letters instead of the original ones. As long as someone has the map, they can translate it back.
+        </p>
+      
+        <p><strong>Let’s walk through it.</strong></p>
       </div>
+      
       <div id="encrypt" class="section">
-        <h2>Encrypting</h2>
-        <p>To encrypt a message, you’ll substitute each letter with the one assigned to it in your cipher map.</p>
-        <p><strong>Example:</strong></p>
+        <h2>Encrypting a Message</h2>
+      
+        <p><strong>Goal:</strong> Replace every letter in a message with its partner from the cipher map.</p>
+      
+        <h3>What You Need</h3>
         <ul>
-          <li>Mapping: H→D, E→V, L→C, O→P</li>
-          <li>Message: HELLO</li>
-          <li>Encryption: D→V→C→C→P = <strong>DVCCP</strong></li>
+          <li>A short message (all caps recommended)</li>
+          <li>A substitution map (e.g., A→Q, B→M, C→Z...)</li>
         </ul>
+      
+        <h3>Step-by-Step</h3>
+        <ol>
+          <li>Write out your message in capital letters. For example: <code>HELLO</code></li>
+          <li>Use your substitution map to find a replacement for each letter.</li>
+          <li>Replace one letter at a time using the map.</li>
+          <li>Leave spaces and punctuation unchanged.</li>
+          <li>The result is your encrypted message — a ciphertext using your custom map.</li>
+        </ol>
+      
+        <h3>Example</h3>
+        <p>
+          Message: <code>HELLO</code><br>
+          Map: H→D, E→V, L→C, O→P<br>
+          Letter by letter:
+        </p>
+        <ul>
+          <li>H → D</li>
+          <li>E → V</li>
+          <li>L → C</li>
+          <li>L → C</li>
+          <li>O → P</li>
+        </ul>
+        <p><strong>Encrypted Output:</strong> <code>DVCCP</code></p>
+      
         <div class="practice-block">
-          <h3>Practice Problems – Encrypting</h3>
-          <p>Use this mapping: A→Q, B→M, C→Z, D→S, E→V</p>
+          <h3>Practice – Encrypt These</h3>
+          <p>Use the following map: A→Q, B→M, C→Z, D→S, E→V</p>
           <ul>
             <li><strong>Encrypt:</strong> BEAD</li>
+            <li><strong>Encrypt:</strong> DECAB</li>
           </ul>
           <h4>Answer Key</h4>
           <ul>
             <li><span class="blur-wrapper">BEAD → <span class="blurred-answer">MVSQ</span></span></li>
+            <li><span class="blur-wrapper">DECAB → <span class="blurred-answer">SVZQM</span></span></li>
           </ul>
         </div>
+      
+        <h3>Try It Yourself</h3>
+        <p>Use the tool in the Try It Yourself section to plug in your own mapping and message. Mix things up and see what you get!</p>
       </div>
-      <div id="decrypt" class="section">
-        <h2>Decrypting</h2>
-        <p>Decryption uses the reverse of your mapping to convert ciphertext back into readable text.</p>
-        <p><strong>Example:</strong></p>
-        <ul>
-          <li>Mapping: D→H, V→E, C→L, P→O</li>
-          <li>Ciphertext: DVCCP</li>
-          <li>Decryption: H→E→L→L→O = <strong>HELLO</strong></li>
-        </ul>
-        <div class="practice-block">
-          <h3>Practice Problems – Decrypting</h3>
-          <p>Same mapping as above: A→Q, B→M, C→Z, D→S, E→V</p>
-          <ul>
-            <li><strong>Decrypt:</strong> TWRT</li>
-          </ul>
-          <h4>Answer Key</h4>
-          <ul>
-            <li><span class="blur-wrapper">TWRT → <span class="blurred-answer">BACK</span></span></li>
-          </ul>
-        </div>
+
+      
+        <div id="decrypt" class="section">
+          <h2>Decrypting a Message</h2>
         
+          <p><strong>Goal:</strong> Use the cipher map to reverse the substitutions and reveal the original message.</p>
+        
+          <h3>What You Need</h3>
+          <ul>
+            <li>A ciphertext message</li>
+            <li>The substitution map that was used to create it</li>
+          </ul>
+        
+          <h3>Step-by-Step</h3>
+          <ol>
+            <li>Write out the encrypted message. For example: <code>DVCCP</code></li>
+            <li>Reverse the substitution map. (If E→V in encryption, then V→E in decryption.)</li>
+            <li>Replace each letter in the ciphertext with its match from the reversed map.</li>
+            <li>Leave spaces and punctuation unchanged.</li>
+            <li>The result is your original message.</li>
+          </ol>
+        
+          <h3>Example</h3>
+          <p>
+            Ciphertext: <code>DVCCP</code><br>
+            Reversed Map: D→H, V→E, C→L, P→O<br>
+            Letter by letter:
+          </p>
+          <ul>
+            <li>D → H</li>
+            <li>V → E</li>
+            <li>C → L</li>
+            <li>C → L</li>
+            <li>P → O</li>
+          </ul>
+          <p><strong>Decrypted Output:</strong> <code>HELLO</code></p>
+        
+          <div class="practice-block">
+            <h3>Practice – Decrypt These</h3>
+            <p>Use this reversed map: Q→A, M→B, Z→C, S→D, V→E</p>
+            <ul>
+              <li><strong>Decrypt:</strong> MVSQ</li>
+              <li><strong>Decrypt:</strong> SVZQM</li>
+            </ul>
+            <h4>Answer Key</h4>
+            <ul>
+              <li><span class="blur-wrapper">MVSQ → <span class="blurred-answer">BEAD</span></span></li>
+              <li><span class="blur-wrapper">SVZQM → <span class="blurred-answer">DECAB</span></span></li>
+            </ul>
+          </div>
+        
+          <h3>Need to Crack It Without the Map?</h3>
+          <p>Try using frequency analysis to compare which letters appear most often in the encrypted message and guess based on common English patterns. E, T, A, and O are good letters to look for.</p>
+        </div>
       </div>
+      
       <div id="details" class="section">
-        <h2>Key Details</h2>
-        <ul>
-          <li>Each letter must have a unique partner — no duplicates.</li>
-          <li>The mapping should be random to avoid patterns.</li>
-          <li>Substitution ciphers are more secure than Caesar ciphers, but still breakable with effort.</li>
-        </ul>
-        <p>Frequency analysis — guessing letters based on how often they appear — is the most common method used to break substitution ciphers.</p>
+        <h2>Key Details and Common Pitfalls</h2>
+
+        <h3>1. Each Letter Maps to Exactly One Other Letter</h3>
+        <p>A good substitution cipher never maps two letters to the same output. For example, both A and B shouldn’t map to Q. Each letter should be unique — one in, one out.</p>
+
+        <h3>2. The Mapping Must Be Random</h3>
+        <p>If your map has a pattern, it’s easier to break. Always shuffle the alphabet randomly to create a more secure substitution.</p>
+
+        <h3>3. Punctuation and Spaces Are Left Alone</h3>
+        <p>Only the letters are encrypted. Everything else (numbers, punctuation, spaces) stays exactly where it is.</p>
+
+        <h3>4. Repetition Can Give You Away</h3>
+        <p>Because each letter is always replaced the same way, repeated patterns like “LL” or “THE” can help codebreakers guess your map. That’s why longer, more complex messages are harder to crack.</p>
+
+        <h3>5. Frequency Analysis Can Still Break It</h3>
+        <p>If someone intercepts a message, they can analyze which letters appear the most and match them to common letters in English like E, T, or A. While helpful, randomness is not foolproof.</p>
       </div>
+
       <div id="practice" class="section">
         <div class="module-section">
-          <h2>🔧 Try the Substitution Cipher!</h2>
-          <p>We've generated a random cipher map for you. Type a message and see it encrypted or decrypted.</p>
-        
+          <h2>Try the Substitution Cipher!</h2>
+          <p>Type a message, paste your substitution map, and choose whether to encrypt or decrypt. You can generate a random cipher map if you don't want to build your own.</p>
+
           <label for="sub-input">Your Message:</label>
-          <input type="text" id="sub-input" placeholder="HELLO" />
-        
+          <input type="text" id="sub-input" placeholder="HELLO WORLD" />
+
           <br><br>
-        
+
           <label for="sub-mode">Mode:</label>
           <select id="sub-mode">
             <option value="encrypt">Encrypt</option>
             <option value="decrypt">Decrypt</option>
           </select>
-        
+
           <br><br>
-        
+
           <label for="sub-map">Cipher Map (editable):</label>
           <textarea id="sub-map" rows="3" cols="50"></textarea>
           <br>
           <button onclick="generateRandomMap()">🔄 New Random Map</button>
-        
+
           <br><br>
-        
+
           <button onclick="runSubstitution()">Run Cipher</button>
-        
+
           <div class="diagram" id="sub-output">
             Output will appear here...
           </div>
-      </div> 
+        </div>
       </div>
-      <div id="tips" class="section">
-        <h2>Tips & Fun Facts</h2>
-        <ul>
-          <li>Look for repeating letters or common words like "THE" when breaking a cipher.</li>
-          <li>Letter frequencies in English: E, T, A, O, I, N are most common.</li>
-        </ul>
-        <p><strong>Fun Fact:</strong> The Zodiac Killer used substitution ciphers in his letters to police — some are still unsolved.</p>
-      </div>
+
     </div>
   </div>
+
   <footer>
     <p>CodeCrackers &copy; 2025</p>
   </footer>
   <script src="scripts.js"></script>
 </body>
 </html>
+

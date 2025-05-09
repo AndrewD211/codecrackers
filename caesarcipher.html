@@ -37,36 +37,62 @@
       <button onclick="showSection('decrypt', this)">Decrypting</button>
       <button onclick="showSection('details', this)">Key Details</button>
       <button onclick="showSection('practice', this)">Try It Yourself</button>
-      <button onclick="showSection('tips', this)">Tips & Fun Facts</button>
     </aside>
     <div class="content-panel">
+
       <div id="intro" class="section active">
-        <h2>Caesar Cipher: A Journey Through Time</h2>
-        <p>People have been hiding messages for thousands of years. From secret military plans scratched into wax tablets to encrypted emails flying through cyberspace, the goal is the same: keep information safe from prying eyes.</p>
-        <p>The Caesar cipher is one of the very first methods ever used to do that. It's simple — but it planted the seeds for all the complex encryption we depend on today.</p>
-        <h3>What You'll Learn</h3>
+        <h2>Introduction: Encrypting with a Simple Shift</h2>
+        <p>
+          The Caesar Cipher is one of the oldest and simplest ways to encrypt a message. It works by shifting each letter in the alphabet by a fixed number of places. You pick the number, that number becomes your key.
+        </p>
+        <p>
+          Here's the basic idea: if your key is 3, then A becomes D, B becomes E, C becomes F, and so on. The alphabet wraps around at the end, so X becomes A, Y becomes B, Z becomes C.
+        </p>
+        <p>
+          This cipher is named after Julius Caesar, who used it to send military messages. It wasn’t hard to break, even back then, but it was better than sending orders in plain language.
+        </p>
+      
+        <h3>What You’ll Learn</h3>
         <ul>
-          <li>How the Caesar cipher works</li>
-          <li>How to encrypt a basic message</li>
-          <li>How to decrypt a Caesar cipher</li>
-          <li>Why this ancient method still matters (even if it's easy to break now)</li>
+          <li>How to use the Caesar Cipher to encrypt and decrypt messages</li>
+          <li>How the shifting process works step-by-step</li>
+          <li>Where the cipher succeeds and where it fails</li>
         </ul>
-        <h3>How the Caesar Cipher Works</h3>
-        <p>The Caesar cipher is what's called a substitution cipher. Each letter is replaced by another letter a fixed number of places down the alphabet.</p>
-        <table>
-          <tr><th>Plaintext</th><th>Shift</th><th>Ciphertext</th></tr>
-          <tr><td>HELLO</td><td>+3</td><td>KHOOR</td></tr>
-        </table>
-        <p>Pretty straightforward, right? You'll see why it works (and how to break it) in a second.</p>
+      
+        <h3>Think of It Like This:</h3>
+        <p>
+          Imagine writing a message, then sliding the entire alphabet forward by a few letters. Now write the same message again, but using the new letters. That’s your encrypted text. Anyone who knows the number you used to shift the alphabet can shift it back and read the message.
+        </p>
+      
       </div>
+      
+
       <div id="encrypt" class="section">
-        <h2>Encrypting a Message (Step-by-Step)</h2>
+        <h2>Encrypting a Message</h2>
+      
+        <p><strong>Goal:</strong> Take a plain English message and convert it into a secret one by shifting the letters.</p>
+      
+        <h3>What You Need</h3>
         <ul>
-          <li>Pick a number between 1 and 25. (This is your shift.)</li>
-          <li>Shift each letter forward by that number.</li>
-          <li>Write down your new encrypted message.</li>
+          <li>A short message (all caps works best)</li>
+          <li>A shift value (a number between 1 and 25)</li>
         </ul>
-        <p><strong>Example:</strong> Encrypt ATTACK with a shift of 4:</p>
+      
+        <h3>Step-by-Step</h3>
+        <ol>
+          <li>Write out your message in capital letters. For example: <code>ATTACK</code></li>
+          <li>Choose a shift. Let’s say we use a shift of 4.</li>
+          <li>Shift each letter forward in the alphabet by that number. So A → E, T → X, etc.</li>
+          <li>Wrap around if you go past Z. For example, Z → D with a shift of 4.</li>
+          <li>The result is your ciphertext. It looks like nonsense, but it hides the original message.</li>
+        </ol>
+      
+        <h3>Example</h3>
+        <p>
+          Message: <code>ATTACK</code><br>
+          Shift: <code>+4</code><br>
+          Letter by letter:
+        </p>
         <ul>
           <li>A → E</li>
           <li>T → X</li>
@@ -75,46 +101,75 @@
           <li>C → G</li>
           <li>K → O</li>
         </ul>
-        <p><strong>Final Ciphertext:</strong> EXXEGO</p>
+        <p>
+          <strong>Encrypted Output:</strong> <code>EXXEGO</code>
+        </p>
+
         <div class="practice-block">
-          <h3>Practice Problems – Encrypting</h3>
+          <h3>Practice – Encrypt These</h3>
+          <p>Use a shift of +5 to encrypt each message.</p>
           <ul>
-            <li><strong>Encrypt:</strong> PUZZLE with a shift of +5</li>
-            <li><strong>Encrypt:</strong> MYSTERY with a shift of +7</li>
+            <li><strong>Encrypt:</strong> PUZZLE</li>
+            <li><strong>Encrypt:</strong> MYSTERY</li>
           </ul>
-        
           <h4>Answer Key</h4>
           <ul>
-            <li><span class="blur-wrapper">PUZZLE → <span class="blurred-answer">UZEZQJ</span></span></li>
-            <li><span class="blur-wrapper">MYSTERY → <span class="blurred-answer">TFZAVFZ</span></span></li>
+            <li><span class="blur-wrapper">PUZZLE → <span class="blurred-answer">UZEEQJ</span></span></li>
+            <li><span class="blur-wrapper">MYSTERY → <span class="blurred-answer">RDXYJWD</span></span></li>
           </ul>
         </div>
         
+      
+        <h3>Try It Yourself</h3>
+        <p>Use the tool in the Try It Yourself section to enter your own message and shift value. Start small. Try encrypting your name or a short phrase.</p>
       </div>
-      <div id="decrypt" class="section">
-        <h2>Decrypting a Message (Step-by-Step)</h2>
-        <ul>
-          <li>Know the shift that was used.</li>
-          <li>Shift each letter backward by that number.</li>
-          <li>Recover the original message.</li>
-        </ul>
-        <p><strong>Example:</strong> Decrypt DWWDFN with a shift of 3:</p>
-        <ul>
-          <li>D → A</li>
-          <li>W → T</li>
-          <li>W → T</li>
-          <li>D → A</li>
-          <li>F → C</li>
-          <li>N → K</li>
-        </ul>
-        <p><strong>Plaintext:</strong> ATTACK</p>
-        <div class="practice-block">
-          <h3>Practice Problems – Decrypting</h3>
-          <ul>
-            <li><strong>Decrypt:</strong> EBIIL using a shift of -23</li>
-            <li><strong>Decrypt:</strong> GZPV using a shift of -25</li>
-          </ul>
+      
         
+      <div id="decrypt" class="section">
+        <h2>Decrypting a Message</h2>
+      
+        <p><strong>Goal:</strong> Take a Caesar-encrypted message and recover the original text using the shift value (the key).</p>
+      
+        <h3>What You Need</h3>
+        <ul>
+          <li>An encrypted message (ciphertext)</li>
+          <li>The shift value that was originally used to encrypt it</li>
+        </ul>
+      
+        <h3>Step-by-Step</h3>
+        <ol>
+          <li>Write out the ciphertext in capital letters. For example: <code>EXXEGO</code></li>
+          <li>Use the shift key that was used to encrypt it. In our case, we’ll use 4.</li>
+          <li>Shift each letter backward in the alphabet by that amount. So E → A, X → T, etc.</li>
+          <li>If the letter would go before A, wrap around to the end of the alphabet.</li>
+          <li>The result the original message decoded!.</li>
+        </ol>
+      
+        <h3>Example</h3>
+        <p>
+          Ciphertext: <code>EXXEGO</code><br>
+          Shift: <code>-4</code><br>
+          Letter by letter:
+        </p>
+        <ul>
+          <li>E → A</li>
+          <li>X → T</li>
+          <li>X → T</li>
+          <li>E → A</li>
+          <li>G → C</li>
+          <li>O → K</li>
+        </ul>
+        <p>
+          <strong>Decrypted Output:</strong> <code>ATTACK</code>
+        </p>
+
+        <div class="practice-block">
+          <h3>Practice – Decrypt These</h3>
+          <p>Use the given shift value to figure out the original message.</p>
+          <ul>
+            <li><strong>Decrypt:</strong> EBIIL with a shift of -23</li>
+            <li><strong>Decrypt:</strong> GZPV with a shift of -25</li>
+          </ul>
           <h4>Answer Key</h4>
           <ul>
             <li><span class="blur-wrapper">EBIIL → <span class="blurred-answer">HELLO</span></span></li>
@@ -122,20 +177,43 @@
           </ul>
         </div>
         
+      
+        <h3>Want to Get Sneaky?</h3>
+        <p>
+          If you don’t know the shift value, you can still crack the code by trying all 25 possible shifts. One of them will reveal something readable!
+        </p>
       </div>
+      
+        
+      
       <div id="details" class="section">
-        <h2>Key Details & Real-World Connection</h2>
-        <ul>
-          <li>Only letters are shifted. Spaces, numbers, and punctuation stay the same.</li>
-          <li>The alphabet wraps around — after Z comes A again.</li>
-          <li>Shifts of 0 or 26 do nothing. (Not very secret.)</li>
-        </ul>
-        <p>While the Caesar cipher itself isn’t secure by today’s standards (you can break it by trying all 25 shifts), the idea of systematically changing information is a foundation for modern encryption.</p>
-        <p>Complex algorithms like AES and RSA are built on much more advanced versions of this basic concept: scramble it, but in a way you can unscramble if you know the key.</p>
+        <h2>Key Details and Common Pitfalls</h2>
+      
+        <h3>1. Only Letters Are Shifted</h3>
+        <p>
+          The Caesar Cipher only changes letters. Numbers, punctuation, and spaces stay the same. So <code>MEET @ 3PM</code> becomes <code>PHHW @ 3SP</code> with a shift of 3.
+        </p>
+      
+        <h3>2. The Alphabet Wraps Around</h3>
+        <p>
+          After Z comes A. So shifting <code>Y</code> by 4 gives you <code>C</code>. Always think in a circle — the alphabet loops.
+        </p>
+      
+        <h3>3. Shift of 0 or 26 Means No Change</h3>
+        <p>
+          A shift of 0 or 26 keeps everything the same. Technically it works, but it’s not a cipher at that point — it’s just your message unchanged.
+        </p>
+      
+        <h3>4. There Are Only 25 Possible Shifts</h3>
+        <p>
+          That makes the Caesar Cipher easy to brute-force. An attacker can try every possible key and see which one makes sense. That’s why it’s no longer used for real security — but it’s perfect for learning how shifting and substitution work.
+        </p>
       </div>
+      
+
       <div id="practice" class="section">
         <div class="module-section">
-          <h2>🔧 Try the Caesar Cipher!</h2>
+          <h2>Try the Caesar Cipher!</h2>
           <p>Type a message and choose a shift to encrypt or decrypt.</p>
         
           <label for="caesar-mode">Mode:</label>
@@ -161,16 +239,17 @@
           <div class="diagram" id="caesar-output">
             Output will appear here...
           </div>
+
+          <div class="diagram" id="mapping-table">
+            <pre>
+          Plain:   A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+          Shifted: (will update when you run the cipher)
+            </pre>
+          </div>
+          
         </div>
       </div>
-      <div id="tips" class="section">
-        <h2>Tips and Fun Facts</h2>
-        <ul>
-          <li>If you don’t know the shift, just try every possible shift. (There are only 25.)</li>
-          <li>Common English letters like E, T, and A show up a lot. Spotting them can help you guess the shift.</li>
-        </ul>
-        <p><strong>Fun Fact:</strong> Julius Caesar is rumored to have used a shift of 3 for his personal messages. (So if you're stuck, 3 is a good guess.)</p>
-      </div>
+    
     </div>
   </div>
   <footer>
