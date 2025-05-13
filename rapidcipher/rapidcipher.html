@@ -100,7 +100,19 @@
     }
   </style>
 </head>
+
+
+
 <body>
+  <!-- Quiz Modal -->
+<div id="quizModal" class="overlay" style="display:none; background: rgba(0,0,0,0.85); z-index: 999;">
+  <div style="background:#1a1a1a; color:#fff; max-width:500px; margin:5% auto; padding:2rem; border-radius:10px;">
+    <h2 id="quizQuestion"></h2>
+    <div id="quizOptions"></div>
+    <p id="quizFeedback" style="margin-top:1rem;"></p>
+    <button onclick="closeQuiz()">Cancel</button>
+  </div>
+</div>
   <h1>RapidCipher</h1>
   <div id="grid"></div>
   <div class="overlay" id="overlay" onclick="closePanel()"></div>
@@ -116,7 +128,6 @@
     const caesarShift = 3;
     const sampleWords = ["HELLO", "WORLD", "CIPHER", "MESSAGE", "ENCRYPT", "SECRET", "AGENT"];
     const colorGroups = ['blue', 'green', 'orange'];
-    const unlockedHints = {};
     const positions = [
       { top: 100, left: 80 }, { top: 240, left: 180 }, { top: 380, left: 60 }, { top: 520, left: 160 },
       { top: 100, left: 400 }, { top: 300, left: 360 }, { top: 500, left: 420 },
@@ -150,15 +161,20 @@
       }
       return result;
     }
-    function openPanel(type, cipher, answer) {
+    function openPanel(type, cipher, answer, label = null) {
       document.getElementById('panelTitle').innerText = `${type} Cipher`;
       document.getElementById('cipherText').innerText = cipher;
       correctAnswer = answer.toUpperCase();
+
+      const hintText = (label && unlockedHints[label]) ? cipherHints[label] : null;
+      const hintBox = hintText ? `<div style="margin: 1rem 0; background:#254; padding:1rem; border-radius:6px;"><strong>Hint:</strong> ${hintText}</div>` : '';
+
+      document.getElementById('feedback').innerHTML = hintBox;
       document.getElementById('userInput').value = '';
-      document.getElementById('feedback').innerText = '';
       document.getElementById('panel').classList.add('active');
       document.getElementById('overlay').classList.add('active');
     }
+
     function closePanel() {
       document.getElementById('panel').classList.remove('active');
       document.getElementById('overlay').classList.remove('active');
@@ -185,7 +201,14 @@
       div.style.top = `${pos.top}px`;
       div.style.left = `${pos.left}px`;
       if (type === 'Hint') {
-        div.onclick = () => nodeClicked(label, group);
+        div.onclick = () => {
+          if (unlockedHints[label]) {
+            openPanel(type, encrypted, word, label);
+          } else {
+            showQuiz(label, type, encrypted, word);
+          }
+        };
+
       } else {
         const word = sampleWords[Math.floor(Math.random() * sampleWords.length)];
         const encrypted =
@@ -200,6 +223,71 @@
     for (let i = 0; i < 3; i++) addNode(`Substitution ${String.fromCharCode(65+i)}`, 'Substitution', colorGroups[i % 3]);
     for (let i = 0; i < 2; i++) addNode(`Vigenère ${String.fromCharCode(65+i)}`, 'Vigenère', colorGroups[i % 3]);
     for (let i = 0; i < 7; i++) addNode(`Hint ${i+1}`, 'Hint', colorGroups[i % 3]);
-  </script>
+ 
+    const unlockedHints = {};  // { "Caesar A": true, ... }
+
+    const quizBank = {
+      "Caesar A": {
+        question: "What is a Caesar cipher?",
+        options: ["A polyalphabetic cipher", "A shift cipher", "A cipher using emojis", "A cipher that rearranges letters"],
+        answer: "A shift cipher"
+      },
+      "Substitution A": {
+        question: "What makes a substitution cipher different from Caesar?",
+        options: ["It uses punctuation", "It uses random mappings", "It uses spaces", "It requires a number key"],
+        answer: "It uses random mappings"
+      },
+      // Add more here as needed...
+    };
+
+    let quizTargetNode = null;
+    function showQuiz(label, type, cipher, answer) {
+      quizTargetNode = { label, type, cipher, answer };
+      const q = quizBank[label];
+      if (!q) {
+        alert("No quiz found for this challenge."); // fallback
+        return;
+      }
+
+      document.getElementById("quizQuestion").innerText = q.question;
+      const opts = q.options.sort(() => Math.random() - 0.5);
+      const quizOptions = document.getElementById("quizOptions");
+      quizOptions.innerHTML = "";
+      opts.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.innerText = opt;
+        btn.style.display = "block";
+        btn.style.margin = "0.5rem 0";
+        btn.onclick = () => checkAnswer(opt);
+        quizOptions.appendChild(btn);
+      });
+
+      document.getElementById("quizFeedback").innerText = "";
+      document.getElementById("quizModal").style.display = "block";
+    }
+
+    function checkAnswer(selected) {
+      const { label, type, cipher, answer } = quizTargetNode;
+      const correct = quizBank[label].answer;
+      const feedback = document.getElementById("quizFeedback");
+
+      if (selected === correct) {
+        unlockedHints[label] = true;
+        feedback.innerText = "✅ Correct! Hint unlocked.";
+        setTimeout(() => {
+          closeQuiz();
+          openPanel(type, cipher, answer, label);
+        }, 800);
+      } else {
+        feedback.innerText = "❌ Incorrect. Try again.";
+      }
+    }
+
+    function closeQuiz() {
+      document.getElementById("quizModal").style.display = "none";
+      document.getElementById("quizFeedback").innerText = "";
+    }
+
+ </script>
 </body>
 </html>
