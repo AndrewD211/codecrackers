@@ -40,23 +40,39 @@
     </aside>
 
     <div class="content-panel">
-      <div id="intro" class="section active">
-        <h2>Introduction: Shifting with a Keyword</h2>
-        <p>The Vigenère Cipher is like the Caesar Cipher — but smarter. Instead of shifting every letter the same amount, you use a keyword. Each letter in that keyword tells you how far to shift a letter in your message. That means the same letter in your message might get encrypted in different ways.</p>
-        <p>This makes the cipher much harder to crack using simple frequency analysis. For a long time, it was considered unbreakable — people even called it “le chiffre indéchiffrable,” or “the indecipherable cipher.”</p>
-      
-        <h3>What You’ll Learn</h3>
-        <ul>
-          <li>How to encrypt messages using a keyword</li>
-          <li>How to reverse the process and decrypt ciphertext</li>
-          <li>Why Vigenère ciphers are more secure than Caesar or substitution ciphers</li>
-        </ul>
-      
-        <h3>Think of It Like This:</h3>
-        <p>Imagine writing a message, but instead of using one fixed shift, you shift each letter based on a rotating sequence of numbers tied to your keyword. If your keyword is <code>KEY</code>, then the first letter of your message shifts by K, the second by E, the third by Y — then back to K, E, Y, and so on.</p>
-      
-        <p><strong>Let’s walk through it.</strong></p>
-      </div>
+    <div id="intro" class="section active">
+    <h2>Introduction: Shifting with a Keyword</h2>
+
+    <p>
+        The <a href="https://www.geeksforgeeks.org/vigenere-cipher/" target="_blank" rel="noopener noreferrer">Vigenère Cipher</a> is a method of encrypting alphabetic text by using a keyword to determine the shift for each letter in the plaintext. Unlike the Caesar Cipher, which uses a single shift value, the Vigenère Cipher employs a series of Caesar ciphers based on the letters of the keyword, making it a form of <strong>polyalphabetic substitution</strong>.
+    </p>
+    <p>
+        This approach significantly complicates frequency analysis attacks, as the same letter in the plaintext can be encrypted to different letters in the ciphertext, depending on the corresponding letter in the keyword. Historically, this led to the cipher being dubbed <a href="https://www.britannica.com/topic/Vigenere-cipher" target="_blank" rel="noopener noreferrer"><em>le chiffre indéchiffrable</em></a>, or "the indecipherable cipher".
+    </p>
+
+    <!-- Image: Vigenère Cipher Encryption Table -->
+    <div class="diagram" style="background: transparent; border: none; outline: none; padding: 0.5rem 0;">
+        <img src="images/vigenere-cipher-diagram.png" alt="Vigenère Cipher Encryption Example" style="max-width: 80%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background: transparent; outline: none; border: none;">
+        <p style="font-style: italic; font-size: 0.85rem; color: #555;">
+        Image credit: <a href="https://www.britannica.com/topic/Vigenere-cipher" target="_blank" rel="noopener noreferrer">SlideServe</a>
+        </p>
+    </div>
+
+    <h3>What You’ll Learn</h3>
+    <ul>
+        <li>How to encrypt messages using a keyword</li>
+        <li>How to reverse the process and decrypt ciphertext</li>
+        <li>Why Vigenère ciphers are more secure than Caesar or substitution ciphers</li>
+    </ul>
+
+    <h3>Think of It Like This:</h3>
+    <p>
+        Imagine writing a message, but instead of using one fixed shift, you shift each letter based on a rotating sequence of numbers tied to your keyword. If your keyword is <code>KEY</code>, then the first letter of your message shifts by K, the second by E, the third by Y — then back to K, E, Y, and so on.
+    </p>
+
+    <p><strong>Let’s take a look.</strong></p>
+    </div>
+
       
 
       <div id="encrypt" class="section">
