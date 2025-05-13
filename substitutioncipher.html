@@ -41,26 +41,46 @@
     </aside>
     <div class="content-panel">
 
-      <div id="intro" class="section active">
-        <h2>Introduction: Encrypting by Replacing Letters</h2>
-        <p>The Substitution Cipher works by replacing each letter in a message with a different, specific letter. Unlike the Caesar Cipher, the shifts aren’t consistent. Every letter has its own assigned replacement.</p>
-        <p>This type of cipher is called a monoalphabetic substitution, meaning each letter in the plaintext maps to exactly one letter in the ciphertext.</p>
-        <p>Substitution ciphers are easy to create, but harder to solve than a Caesar cipher. Still, they’re vulnerable to something called frequency analysis — a method of breaking the code by looking at how often certain letters appear.</p>
-      
-        <h3>What You’ll Learn</h3>
-        <ul>
-          <li>How to encrypt and decrypt using a substitution map</li>
-          <li>How to write and reverse a letter mapping</li>
-          <li>Why randomization matters for cipher strength</li>
-        </ul>
-      
-        <h3>Think of It Like This:</h3>
-        <p>
-          Imagine taking a bag of Scrabble tiles and randomly swapping every letter for a different one. A becomes Q, B becomes M, C becomes Z. Then you write your message using the new letters instead of the original ones. As long as someone has the map, they can translate it back.
-        </p>
-      
-        <p><strong>Let’s walk through it.</strong></p>
-      </div>
+    <div id="intro" class="section active">
+  <h2>Introduction: Encrypting by Replacing Letters</h2>
+
+  <p>
+    The Substitution Cipher operates by replacing each letter in a message with a different, specific letter. Unlike the Caesar Cipher, the shifts aren’t consistent; every letter has its own assigned replacement. This method is known as a <a href="https://www.geeksforgeeks.org/what-is-monoalphabetic-cipher/" target="_blank" rel="noopener noreferrer"><strong>monoalphabetic substitution</strong></a>, where each letter in the plaintext maps to exactly one letter in the ciphertext.
+  </p>
+
+  <!-- Image: Substitution Cipher Diagram -->
+  <div class="diagram" style="background: transparent; border: none; outline: none; padding: 0.5rem 0;">
+    <img src="images/substitution-cipher-diagram.png" alt="Substitution Cipher Diagram" style="max-width: 80%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background: transparent; outline: none; border: none;">
+    <p style="font-style: italic; font-size: 0.85rem; color: #555;">
+      Image credit: <a href="https://www.semanticscholar.org/paper/EFFICIENT-ATTACKS-ON-HOMOPHONIC-SUBSTITUTION-Scholarworks-Dhavare/2aa6c1f977c607364cfc94e099efffe54cc7b9bf/figure/0" target="_blank" rel="noopener noreferrer">SlideServe / Classical Cryptography</a>
+    </p>
+  </div>
+
+  <p>
+    Substitution ciphers are straightforward to create but more challenging to solve than a Caesar cipher. However, they are susceptible to <a href="https://crypto.interactive-maths.com/frequency-analysis-breaking-the-code.html" target="_blank" rel="noopener noreferrer"><strong>frequency analysis</strong></a>, a technique that breaks the code by analyzing the frequency of letter occurrences.
+  </p>
+
+  <!-- Image: Frequency Analysis Chart -->
+  <div class="diagram" style="background: transparent; border: none; outline: none; padding: 0.5rem 0;">
+    <img src="images/frequency-analysis-chart.jpg" alt="Frequency Analysis Chart" style="max-width: 80%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background: transparent; outline: none; border: none;">
+    <p style="font-style: italic; font-size: 0.85rem; color: #555;">
+      Image credit: <a href="https://www.researchgate.net/figure/Frequency-analysis-chart-for-the-transposition-ciphertext-B-The-frequency-chart-and_fig6_352838407" target="_blank" rel="noopener noreferrer">ResearchGate / Aiman Al-Sabaawi</a>
+    </p>
+  </div>
+
+  <h3>What You’ll Learn</h3>
+  <ul>
+    <li>How to encrypt and decrypt using a substitution map</li>
+    <li>How to write and reverse a letter mapping</li>
+    <li>Why randomization matters for cipher strength</li>
+  </ul>
+
+  <h3>Think of It Like This:</h3>
+  <p>
+    Imagine taking a bag of Scrabble tiles and randomly swapping every letter for a different one. A becomes Q, B becomes M, C becomes Z. Then you write your message using the new letters instead of the original ones. As long as someone has the map, they can translate it back.
+  </p>
+    </div>
+
       
       <div id="encrypt" class="section">
         <h2>Encrypting a Message</h2>

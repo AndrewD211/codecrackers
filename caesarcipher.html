@@ -10,7 +10,6 @@
 
 <body>
 
-   <!-- Hamburger -->
    <div id="menu-toggle" onclick="toggleMenu()">☰</div>
 
    <!-- Slide-in Nav -->
@@ -29,7 +28,7 @@
   <header>
     <h1>Caesar Cipher Module</h1>
   </header>
-
+<!-- Module Window -->
   <div class="module-window">
     <aside class="sidebar-nav">
       <button onclick="showSection('intro', this)" class="active">Introduction</button>
@@ -39,34 +38,42 @@
       <button onclick="showSection('practice', this)">Try It Yourself</button>
     </aside>
     <div class="content-panel">
+<!-- Intro -->
+  <div id="intro" class="section active">
+  <h2>Introduction: Encrypting with a Simple Shift</h2>
 
-      <div id="intro" class="section active">
-        <h2>Introduction: Encrypting with a Simple Shift</h2>
-        <p>
-          The Caesar Cipher is one of the oldest and simplest ways to encrypt a message. It works by shifting each letter in the alphabet by a fixed number of places. You pick the number, that number becomes your key.
-        </p>
-        <p>
-          Here's the basic idea: if your key is 3, then A becomes D, B becomes E, C becomes F, and so on. The alphabet wraps around at the end, so X becomes A, Y becomes B, Z becomes C.
-        </p>
-        <p>
-          This cipher is named after Julius Caesar, who used it to send military messages. It wasn’t hard to break, even back then, but it was better than sending orders in plain language.
-        </p>
-      
-        <h3>What You’ll Learn</h3>
-        <ul>
-          <li>How to use the Caesar Cipher to encrypt and decrypt messages</li>
-          <li>How the shifting process works step-by-step</li>
-          <li>Where the cipher succeeds and where it fails</li>
-        </ul>
-      
-        <h3>Think of It Like This:</h3>
-        <p>
-          Imagine writing a message, then sliding the entire alphabet forward by a few letters. Now write the same message again, but using the new letters. That’s your encrypted text. Anyone who knows the number you used to shift the alphabet can shift it back and read the message.
-        </p>
-      
-      </div>
-      
+  <p>
+    The Caesar Cipher is one of the oldest and simplest methods of encrypting messages. It operates by shifting each letter in the alphabet by a fixed number of positions. This fixed number is known as the key.
+    <a href="https://www.geeksforgeeks.org/caesar-cipher-in-cryptography/" target="_blank" rel="noopener noreferrer">For example</a>, with a key of 3, 'A' becomes 'D', 'B' becomes 'E', and so on. The alphabet wraps around at the end, so 'X' becomes 'A', 'Y' becomes 'B', and 'Z' becomes 'C'.
+    This cipher is named after <a href="https://www.geeksforgeeks.org/caesar-cipher-in-cryptography/" target="_blank" rel="noopener noreferrer">Julius Caesar</a>, who reportedly used it to protect his military communications.
+  </p>
 
+ <!-- Image: Julius Caesar Bust -->
+<div class="diagram" style="background: transparent; border: none; outline: none;">
+  <img src="images/julius-caesar-bust.jpg" alt="Bust of Julius Caesar"
+       style="max-width: 80%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background: transparent; outline: none; border: none;">
+  <p style="font-style: italic; font-size: 0.85rem; color: #555;">
+    Image credit: <a href="https://history.ucr.edu/sites/default/files/styles/form_preview/public/caesar.jpg?itok=w2grLSNa/" target="_blank" rel="noopener noreferrer">Pexels / ClickerHappy</a>
+  </p>
+</div>
+
+
+  <h3>What You’ll Learn</h3>
+  <ul>
+    <li>How to use the Caesar Cipher to encrypt and decrypt messages</li>
+    <li>Step-by-step understanding of the shifting process</li>
+    <li>Insights into the strengths and weaknesses of the cipher</li>
+  </ul>
+
+  <h3>Think of It Like This:</h3>
+  <p>
+    Imagine writing a message, then shifting the entire alphabet forward by a few letters. Now, rewrite your message using this shifted alphabet. That's your encrypted text. Anyone who knows the number you used to shift the alphabet can shift it back to read the original message.
+  </p>
+</div>
+
+
+      
+      <!-- Encryption -->
       <div id="encrypt" class="section">
         <h2>Encrypting a Message</h2>
       
@@ -124,7 +131,7 @@
         <p>Use the tool in the Try It Yourself section to enter your own message and shift value. Start small. Try encrypting your name or a short phrase.</p>
       </div>
       
-        
+      <!-- Decryption -->  
       <div id="decrypt" class="section">
         <h2>Decrypting a Message</h2>
       
@@ -185,13 +192,13 @@
       </div>
       
         
-      
+      <!-- Details -->
       <div id="details" class="section">
         <h2>Key Details and Common Pitfalls</h2>
       
         <h3>1. Only Letters Are Shifted</h3>
         <p>
-          The Caesar Cipher only changes letters. Numbers, punctuation, and spaces stay the same. So <code>MEET @ 3PM</code> becomes <code>PHHW @ 3SP</code> with a shift of 3.
+          The Caesar Cipher only changes letters. Numbers, punctuation, and spaces stay the same. So <code>MEET AT 3PM</code> becomes <code>PHHW DW 3SP</code> with a shift of 3.
         </p>
       
         <h3>2. The Alphabet Wraps Around</h3>
@@ -210,7 +217,7 @@
         </p>
       </div>
       
-
+      <!-- Practice -->
       <div id="practice" class="section">
         <div class="module-section">
           <h2>Try the Caesar Cipher!</h2>
@@ -255,6 +262,7 @@
   <footer>
     <p>CodeCrackers &copy; 2025</p>
   </footer>
+  <!-- Scripts -->
   <script src="scripts.js"></script>
 </body>
 </html>
