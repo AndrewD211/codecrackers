@@ -96,109 +96,141 @@
       <button onclick="showSection('start', this)">Where to Start</button>
     </aside>
 
-    <div class="content-panel">
-      <div id="what" class="section active">
-        <h2>What Is Encryption?</h2>
-        <p>Encryption is the art of hiding information in plain sight. It transforms readable data, like messages, passwords, or files, into scrambled code that only someone with the right key can understand.
+  <div class="content-panel">
+       
 
-          That might sound technical, but at its core, encryption is about privacy. Whether you're sending a personal message, protecting a password, or securing a document, encryption makes sure your information stays between you and the person it's meant for.
-          
-          You do not need a degree in math or computer science to understand how it works. CodeCrackers breaks it down into clear, hands-on steps so you can see exactly what is happening behind the scenes and even try it yourself.
-          
-          Before we explore the tools and techniques, it helps to understand how encryption developed into what it is today. Not through complex equations, but through the simple need to protect private information.</p>
-      </div>
-
-      <div id="history" class="section">
-  <h2>A History of Secrets</h2>
-  <p>
-    Encryption is not a modern invention. Long before smartphones and computers, people found clever ways to hide messages. Whether they were writing on scrolls, carving symbols into walls, or inventing mechanical devices, the goal was the same: keep information away from prying eyes.
-  </p>
-  <p>
-    What follows is a look at how encryption has evolved over thousands of years. These examples are not just trivia. They show how each generation built tools to meet the challenges of their time.
-  </p>
-
-  <div style="border-bottom: 2px solid #ccc; margin-bottom: 1rem;">
-    <button class="history-tab active" onclick="showHistoryEra('era1', this)">Ancient and Classical</button>
-    <button class="history-tab" onclick="showHistoryEra('era2', this)">Renaissance and Industrial Age</button>
-    <button class="history-tab" onclick="showHistoryEra('era3', this)">Modern Era</button>
+  <div id="what" class="section active">
+  <h2>What Is Encryption?</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <p>
+        Encryption is the art of hiding information in plain sight. It transforms readable data, like messages, passwords, or files, into scrambled code that only someone with the right key can understand, as defined by the <a href="https://csrc.nist.gov/glossary/term/encryption" target="_blank" rel="noopener noreferrer">National Institute of Standards and Technology (NIST)</a>.
+      </p>
+      <p>
+        That might sound technical, but at its core, encryption is about <a href="https://ssd.eff.org/en/module/introduction-encryption-and-how-it-protects-you" target="_blank" rel="noopener noreferrer">protecting digital privacy</a>. Whether you're sending a personal message, protecting a password, or securing a document, encryption ensures your information stays between you and the person it's meant for.
+      </p>
+      <p>
+        You do not need a degree in math or computer science to understand how it works. CodeCrackers breaks it down into clear, hands-on steps so you can see exactly what is happening behind the scenes and even try it yourself.
+      </p>
+      <p>
+        Before we explore the tools and techniques, it helps to understand how encryption developed into what it is today. Not through complex equations, but through the simple need to protect private information.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <img src="images/cyber-security-lock.webp" alt="Cybersecurity lock illustration" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+      <p style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">
+        Image credit: <a href="https://www.dreamstime.com/cyber-security-illustration-padlock-black-blue-lock-sign-digital-grid-data-protection-cyber-cyber-security-image272473536" target="_blank" rel="noopener noreferrer">Dreamstime</a>
+      </p>
+    </div>
   </div>
+</div>
 
-  <div id="era1" class="history-era active">
-    <h3>Ancient and Classical Roots</h3>
-    <ul>
-      <li><strong>Egypt (around 1900 BCE):</strong> Some  <a href="https://www.britishmuseum.org/collection/object/Y_EA37983" target="_blank" rel="noopener noreferrer">tombs</a> contain writing that intentionally scrambles symbols to make them harder to understand.</li>
-      <li><strong>Mesopotamia (around 1500 BCE):</strong> A clay tablet hides a recipe for glaze, likely to <a href="https://blog.hidglobal.com/cryptography-then-and-now" target="_blank" rel="noopener noreferrer">protect trade secrets</a> from competitors.</li>
-      <li><strong>Sparta (5th century BCE):</strong> The <a href="https://www.britannica.com/technology/scytale" target="_blank" rel="noopener noreferrer">scytale</a> used a strip of parchment wrapped around a wooden rod. Only someone with a rod of the same size could read the message.</li>
-      <li><strong>India (4th century BCE):</strong> The <a href="https://pragyata.com/espionage-in-kautilyas-arthasastra/" target="_blank" rel="noopener noreferrer">Arthasastra</a> includes advice on secret writing using code and substitution for espionage and diplomacy.</li>
-      <li><strong>Rome (50 BCE):</strong> Julius Caesar used a simple <a href="https://www.nsa.gov/portals/75/documents/news-features/declassified-documents/friedman-documents/publications/FOLDER_238/41748889078809.pdf" target="_blank" rel="noopener noreferrer">letter shift cipher</a> to hide his military messages. Today we call this the Caesar Cipher.</li>
-    </ul>
+
+
+  <div id="history" class="section">
+    <h2>A History of Secrets</h2>
     <p>
-      These early forms of encryption were basic but effective. They protected information related to politics, religion, and trade.
+      Encryption is not a modern invention. Long before smartphones and computers, people found clever ways to hide messages. Whether they were writing on scrolls, carving symbols into walls, or inventing mechanical devices, the goal was the same: keep information away from prying eyes.
     </p>
+    <p>
+      What follows is a look at how encryption has evolved over thousands of years. These examples are not just trivia. They show how each generation built tools to meet the challenges of their time.
+    </p>
+
+    <div style="border-bottom: 2px solid #ccc; margin-bottom: 1rem;">
+      <button class="history-tab active" onclick="showHistoryEra('era1', this)">Ancient and Classical</button>
+      <button class="history-tab" onclick="showHistoryEra('era2', this)">Renaissance and Industrial Age</button>
+      <button class="history-tab" onclick="showHistoryEra('era3', this)">Modern Era</button>
+    </div>
+
+    <div id="era1" class="history-era active">
+      <h3>Ancient and Classical Roots</h3>
+      <ul>
+        <li><strong>Egypt (around 1900 BCE):</strong> Some  <a href="https://www.britishmuseum.org/collection/object/Y_EA37983" target="_blank" rel="noopener noreferrer">tombs</a> contain writing that intentionally scrambles symbols to make them harder to understand.</li>
+        <li><strong>Mesopotamia (around 1500 BCE):</strong> A clay tablet hides a recipe for glaze, likely to <a href="https://blog.hidglobal.com/cryptography-then-and-now" target="_blank" rel="noopener noreferrer">protect trade secrets</a> from competitors.</li>
+        <li><strong>Sparta (5th century BCE):</strong> The <a href="https://www.britannica.com/technology/scytale" target="_blank" rel="noopener noreferrer">scytale</a> used a strip of parchment wrapped around a wooden rod. Only someone with a rod of the same size could read the message.</li>
+        <li><strong>India (4th century BCE):</strong> The <a href="https://pragyata.com/espionage-in-kautilyas-arthasastra/" target="_blank" rel="noopener noreferrer">Arthasastra</a> includes advice on secret writing using code and substitution for espionage and diplomacy.</li>
+        <li><strong>Rome (50 BCE):</strong> Julius Caesar used a simple <a href="https://www.nsa.gov/portals/75/documents/news-features/declassified-documents/friedman-documents/publications/FOLDER_238/41748889078809.pdf" target="_blank" rel="noopener noreferrer">letter shift cipher</a> to hide his military messages. Today we call this the Caesar Cipher.</li>
+      </ul>
+      <p>
+        These early forms of encryption were basic but effective. They protected information related to politics, religion, and trade.
+      </p>
+    </div>
+
+    <div id="era2" class="history-era">
+      <h3>Renaissance and Industrial Age</h3>
+      <ul>
+      <li><strong>9th century (Arab world):</strong> <a href="https://muslimheritage.com/al-kindi-cryptography/" target="_blank" rel="noopener noreferrer">Al-Kindi</a> described frequency analysis, a method for breaking substitution ciphers by studying letter patterns.</li>
+        <li><strong>1400s:</strong> <a href="https://www.britannica.com/technology/cipher-disk" target="_blank" rel="noopener noreferrer">Leon Battista Alberti</a> invented the cipher disk, a mechanical device that made it easier to change ciphers mid-message.</li>
+        <li><strong>1500s:</strong> European governments began using secret writing in diplomacy to protect state secrets and negotiations.</li>
+        <li><strong>1586:</strong> <a href="https://www.britannica.com/topic/Vigenere-cipher" target="_blank" rel="noopener noreferrer">Blaise de Vigenère</a> published a method of encryption based on repeating keywords. It remained strong for centuries.</li>
+        <li><strong>1600s:</strong> Printed cipher books became more common among military and political leaders.</li>
+        <li><strong>1700s:</strong> <a href="https://www.monticello.org/research-education/thomas-jefferson-encyclopedia/wheel-cipher/" target="_blank" rel="noopener noreferrer">Thomas Jefferson</a> designed a set of rotating disks that could be used to encrypt messages. A similar device was later used by the U.S. Army.</li>
+        <li><strong>1800s:</strong> With the invention of the telegraph, ciphers had to adapt to fast, long-distance communication.</li>
+      </ul>
+      <p>
+        During this time, encryption moved from hand-written codes to mechanical tools. Secrecy became part of politics, war, and international relations.
+      </p>
+    </div>
+
+    <div id="era3" class="history-era">
+      <h3>Modern Era</h3>
+      <ul>
+        <li><strong>World War I and II:</strong> Mechanical machines like the <a href="https://www.britannica.com/topic/Enigma-German-code-device" target="_blank" rel="noopener noreferrer">Enigma</a> were used to protect military communications. Allied codebreakers used early computers to break them.</li>
+        <li><strong>1940s and 1950s:</strong> Cold War tensions led to rapid development of new encryption systems, most of which remained classified.</li>
+        <li><strong>1976:</strong> <a href="https://www.cs.jhu.edu/~rubin/courses/sp03/papers/diffie.hellman.pdf" target="_blank" rel="noopener noreferrer">Diffie and Hellman</a> introduced public-key encryption, which allowed secure communication over open networks.</li>
+        <li><strong>1977:</strong> <a href="https://www.invent.org/inductees/leonard-adleman" target="_blank" rel="noopener noreferrer">RSA encryption</a> was invented. It uses large prime numbers to create secure digital keys and is still used today.</li>
+        <li><strong>1990s:</strong> As the internet grew, encryption became part of email, websites, and online shopping. Tools like PGP helped individuals secure messages.</li>
+        <li><strong>2001:</strong> The <a href="https://csrc.nist.gov/publications/detail/fips/197/final" target="_blank" rel="noopener noreferrer">Advanced Encryption Standard (AES)</a> was adopted as the new standard by the U.S. government. It replaced older methods like DES.</li>
+        <li><strong>Today:</strong> Encryption is everywhere. It protects passwords, financial transactions, chats, cloud storage, and even smart home devices.</li>
+      </ul>
+      <p>
+        Modern encryption is fast and often invisible to users, but it still serves the same goals as ancient methods. It protects messages, verifies senders, and keeps information private.
+      </p>
   </div>
-
-  <div id="era2" class="history-era">
-    <h3>Renaissance and Industrial Age</h3>
-    <ul>
-    <li><strong>9th century (Arab world):</strong> <a href="https://muslimheritage.com/al-kindi-cryptography/" target="_blank" rel="noopener noreferrer">Al-Kindi</a> described frequency analysis, a method for breaking substitution ciphers by studying letter patterns.</li>
-      <li><strong>1400s:</strong> <a href="https://www.britannica.com/technology/cipher-disk" target="_blank" rel="noopener noreferrer">Leon Battista Alberti</a> invented the cipher disk, a mechanical device that made it easier to change ciphers mid-message.</li>
-      <li><strong>1500s:</strong> European governments began using secret writing in diplomacy to protect state secrets and negotiations.</li>
-      <li><strong>1586:</strong> <a href="https://www.britannica.com/topic/Vigenere-cipher" target="_blank" rel="noopener noreferrer">Blaise de Vigenère</a> published a method of encryption based on repeating keywords. It remained strong for centuries.</li>
-      <li><strong>1600s:</strong> Printed cipher books became more common among military and political leaders.</li>
-      <li><strong>1700s:</strong> <a href="https://www.monticello.org/research-education/thomas-jefferson-encyclopedia/wheel-cipher/" target="_blank" rel="noopener noreferrer">Thomas Jefferson</a> designed a set of rotating disks that could be used to encrypt messages. A similar device was later used by the U.S. Army.</li>
-      <li><strong>1800s:</strong> With the invention of the telegraph, ciphers had to adapt to fast, long-distance communication.</li>
-    </ul>
-    <p>
-      During this time, encryption moved from hand-written codes to mechanical tools. Secrecy became part of politics, war, and international relations.
-    </p>
-  </div>
-
-  <div id="era3" class="history-era">
-    <h3>Modern Era</h3>
-    <ul>
-      <li><strong>World War I and II:</strong> Mechanical machines like the <a href="https://www.britannica.com/topic/Enigma-German-code-device" target="_blank" rel="noopener noreferrer">Enigma</a> were used to protect military communications. Allied codebreakers used early computers to break them.</li>
-      <li><strong>1940s and 1950s:</strong> Cold War tensions led to rapid development of new encryption systems, most of which remained classified.</li>
-      <li><strong>1976:</strong> <a href="https://www.cs.jhu.edu/~rubin/courses/sp03/papers/diffie.hellman.pdf" target="_blank" rel="noopener noreferrer">Diffie and Hellman</a> introduced public-key encryption, which allowed secure communication over open networks.</li>
-      <li><strong>1977:</strong> <a href="https://www.invent.org/inductees/leonard-adleman" target="_blank" rel="noopener noreferrer">RSA encryption</a> was invented. It uses large prime numbers to create secure digital keys and is still used today.</li>
-      <li><strong>1990s:</strong> As the internet grew, encryption became part of email, websites, and online shopping. Tools like PGP helped individuals secure messages.</li>
-      <li><strong>2001:</strong> The <a href="https://csrc.nist.gov/publications/detail/fips/197/final" target="_blank" rel="noopener noreferrer">Advanced Encryption Standard (AES)</a> was adopted as the new standard by the U.S. government. It replaced older methods like DES.</li>
-      <li><strong>Today:</strong> Encryption is everywhere. It protects passwords, financial transactions, chats, cloud storage, and even smart home devices.</li>
-    </ul>
-    <p>
-      Modern encryption is fast and often invisible to users, but it still serves the same goals as ancient methods. It protects messages, verifies senders, and keeps information private.
-    </p>
   </div>
 
 
       
 
-  <div id="why" class="section">
-    <h2>Why Encryption Matters (More Than Ever)</h2>
-    <ul>
-      <li>It protects your identity, your privacy, and your personal data</li>
-      <li>It keeps online shopping, banking, and communication secure</li>
-      <li>It secures communication for people working in dangerous or restricted areas</li>
-    </ul>
-  
-  
-  
-    <p>
-      Without encryption, everything you do online would be exposed. Emails could be read, passwords stolen, and private conversations intercepted. Encryption is what keeps those things safe.
-    </p>
-    <p>
-      Learning how it works gives you more than just technical knowledge. It gives you perspective. You will understand what makes your data secure, where vulnerabilities exist, and how to think like a problem-solver when it comes to digital privacy.
-    </p>
-    <div style="margin: 2rem 0; display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem;">
-      <div style="flex: 1 1 300px; min-width: 280px;">
-        <p>
-          During World War II, the German military used a machine called Enigma to encrypt its battlefield messages. It was believed to be unbreakable. But Allied codebreakers at Bletchley Park, including mathematician Alan Turing, cracked the system. That breakthrough gave the Allies access to German communications in real time. Historians estimate that breaking Enigma shortened the war by at least two years and saved millions of lives. This is one of the clearest examples of how powerful encryption — and the ability to break it — can shape history.
-        </p>
-      </div>
-      <div style="flex: 0 0 300px; min-width: 280px;">
-        <img src="images/enigma-machine.jpg" alt="Photo of the Enigma machine used during World War II" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-      </div>
+<div id="why" class="section">
+  <h2>Why Encryption Matters (More Than Ever)</h2>
+
+  <ul>
+    <li>It protects your identity, your privacy, and your personal data</li>
+    <li>It keeps online shopping, banking, and communication secure</li>
+    <li>It secures communication for people working in dangerous or restricted areas</li>
+  </ul>
+
+  <p>
+    Without encryption, everything you do online would be exposed. Emails could be read, passwords stolen, and private conversations intercepted.
+    <a href="https://ssd.eff.org/en/module/introduction-encryption-and-how-it-protects-you" target="_blank" rel="noopener noreferrer">Encryption is what keeps those things safe</a>.
+  </p>
+
+  <p>
+    Learning how it works gives you more than just technical knowledge. It gives you perspective. You will understand what makes your data secure, where vulnerabilities exist, and how to think like a problem-solver when it comes to digital privacy.
+  </p>
+
+  <div style="margin: 2rem 0; display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem;">
+    <div style="flex: 1 1 300px; min-width: 280px;">
+      <p>
+        During World War II, the German military used a machine called Enigma to encrypt its battlefield messages. It was believed to be unbreakable.
+        But Allied codebreakers at <a href="https://bletchleypark.org.uk/our-story/enigma/" target="_blank" rel="noopener noreferrer">Bletchley Park</a>,
+        including mathematician Alan Turing, cracked the system. That breakthrough gave the Allies access to German communications in real time.
+        Historians estimate that breaking Enigma shortened the war by at least two years and saved millions of lives.
+      </p>
     </div>
+      <div style="flex: 0 0 200px; min-width: 190px;">
+      <img src="images/enigma-machine.jpg" alt="Photo of the Enigma machine used during World War II"
+          style="width: 100%; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+      <p style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">
+        Image credit: <a href="https://commons.wikimedia.org/wiki/File:Enigma-Machine.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+      </p>
+    </div>
+
+
   </div>
+</div>
+
       
       
       
@@ -212,17 +244,27 @@
   <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; margin-top: 2rem;">
     <div style="flex: 1 1 300px; max-width: 32%;">
       <p><strong><a href="caesarcipher.html">Caesar Cipher:</a></strong> A simple letter shift that introduces the idea of key-based encryption.</p>
-      <img src="images/caesar-placeholder.jpg" alt= style="width: 100%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 0.5rem;">
+      <img src="images/caesar-cipher.svg" alt="Diagram illustrating Caesar cipher with a shift of 3" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 0.5rem;">
+      <p style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">
+        Image credit: <a href="https://upload.wikimedia.org/wikipedia/commons/2/2b/Caesar3.svg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+      </p>
     </div>
     <div style="flex: 1 1 300px; max-width: 32%;">
       <p><strong><a href="substitutioncipher.html">Substitution Cipher:</a></strong> A more flexible system where each letter has a unique mapped partner, useful for pattern recognition and breaking codes.</p>
-      <img src="images/substitution-placeholder.jpg" alt= style="width: 100%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 0.5rem;">
+      <img src="images/substitution-cipher.png" alt="Example of a simple substitution cipher" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 0.5rem;">
+      <p style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">
+        Image credit: <a href="https://en.wikipedia.org/wiki/Substitution_cipher#/media/File:ROT13.png" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+      </p>
     </div>
     <div style="flex: 1 1 300px; max-width: 32%;">
       <p><strong><a href="vigenerecipher.html">Vigenère Cipher:</a></strong> A clever keyword-based cipher that was considered unbreakable for centuries. It uses multiple shifting alphabets to strengthen security.</p>
-      <img src="images/vigenere-placeholder.jpg" alt= style="width: 100%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 0.5rem;">
+      <img src="images/vigenere-cipher.png" alt="Vigenère cipher table (tabula recta)" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 0.5rem;">
+      <p style="font-size: 0.9em; color: #666; margin-top: 0.5rem;">
+        Image credit: <a href="https://upload.wikimedia.org/wikipedia/commons/f/f5/Vigenere_Table_with_Numbers.png" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+      </p>
     </div>
   </div>
+
 
   <p style="margin-top: 2rem;">
     Each module includes clear explanations, worked examples, interactive tools, and practice problems. You can test your skills as you go and apply what you’ve learned in real time.
