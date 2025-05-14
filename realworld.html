@@ -36,45 +36,173 @@
       <button onclick="showSection('next', this)">Where You Can Go Next</button>
     </aside>
     <div class="content-panel">
-      <div id="protect" class="section active">
+    <!-- How Encryption Protects-->    
+     <div id="protect" class="section active">
         <h2>How Encryption Protects You</h2>
-        <p>Every time you send a message, log into a website, or save a file in the cloud, encryption is quietly working behind the scenes to keep your information safe.</p>
-        <p><strong>Messaging Apps:</strong> Apps like WhatsApp, iMessage, and Signal use end-to-end encryption so that only you and your recipient can read your messages — not even the app itself can peek.</p>
-        <p><strong>Websites:</strong> That little lock icon in your browser means you're using HTTPS — your connection is encrypted. This prevents eavesdropping or password theft on public Wi-Fi.</p>
-        <p><strong>Cloud Storage & Banks:</strong> Services like Google Drive and Dropbox encrypt your files. Banks use encryption to protect your transactions and account data. Password managers like Bitwarden and 1Password rely on advanced algorithms like AES-256.</p>
-        <!-- image placeholder -->
-        <img src="images/encryption-matters-placeholder.jpg" alt="Image showing encryption in everyday life" style="max-width: 100%; margin: 1rem 0; border-radius: 8px;" />
-      </div>
 
-      <div id="realworld" class="section">
+        <p>
+            Every time you send a message, log into a website, or save a file in the cloud, encryption works behind the scenes to keep your information safe.
+        </p>
+
+        <p>
+            <strong>Messaging Apps:</strong> Apps like <a href="https://www.forbes.com/sites/zakdoffman/2025/03/25/whatsapp-imessage-signal-which-should-you-use-now/" target="_blank" rel="noopener noreferrer">WhatsApp, iMessage, and Signal</a> use end-to-end encryption so that only you and your recipient can read your messages—not even the app itself can peek.
+        </p>
+        <div style="float: right; width: 150px; margin-left: 1rem; margin-bottom: 0.5rem; text-align: center;">
+        <img src="images/https.jpg" alt="HTTPS Lock Icon" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <p style="font-style: italic; font-size: 0.75rem; color: #555; margin-top: 0.25rem;">
+            Image credit: <a href="https://www.dreamstime.com/https-browser-address-bar-green-padlock-icon-close-up-https-web-browser-image111645463" target="_blank" rel="noopener noreferrer">Dreamstime</a>
+        </p>
+        </div>
+
+        <p>
+        <strong>Websites:</strong> The padlock icon in your browser indicates that you're using 
+        <a href="https://www.sciencedirect.com/science/article/pii/S004579062400065X" target="_blank" rel="noopener noreferrer">HTTPS</a>, 
+        which combines HTTP with Transport Layer Security (TLS) to encrypt data transmitted between your browser and the website. This encryption prevents eavesdropping and tampering with the data in transit.
+        </p>
+
+
+
+
+        <p>
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5086676" target="_blank" rel="noopener noreferrer"><strong>Cloud Storage & Banks:</strong></a> Services like Google Drive and Dropbox encrypt your files to protect them from unauthorized access. Banks use encryption to secure your transactions and account data. Password managers such as Bitwarden and 1Password rely on advanced algorithms like AES-256 to safeguard your credentials.
+        </p>
+
+
+        <!-- Image: End-to-End Encryption Diagram -->
+        <div class="diagram" style="background: transparent; border: none; outline: none; padding: 0.5rem 0;">
+            <img src="images/end-to-end.webp" alt="End-to-End Encryption Diagram" style="max-width: 80%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background: transparent; outline: none; border: none;">
+            <p style="font-style: italic; font-size: 0.85rem; color: #555;">
+            Image credit: <a href="https://www.ringcentral.com/us/en/blog/what-is-end-to-end-encryption/" target="_blank" rel="noopener noreferrer">RingCentral</a>
+            </p>
+        </div>
+     </div>
+
+    <!-- Encryption in Action --> 
+    <div id="realworld" class="section">
         <h2>Encryption in Action</h2>
-        <p>Encryption is everywhere. It’s what keeps your Face ID secure, protects your location history, and ensures your credit card details don’t fly around the internet in plain text.</p>
-        <p>Modern encryption uses complex math to scramble information. Algorithms like RSA, ECC (elliptic curve cryptography), and SHA-256 hashes are the backbone of today’s digital security.</p>
-        <p>You’ve already learned the foundational ideas: shifting letters, creating one-to-one mappings, and using keys. That same thinking powers the real systems used by governments, corporations, and developers worldwide.</p>
-        <!-- image placeholder -->
-        <img src="images/modern-ciphers-placeholder.jpg" alt="Diagram showing modern encryption like RSA or ECC" style="max-width: 100%; margin: 1rem 0; border-radius: 8px;" />
-      </div>
 
-      <div id="next" class="section">
-        <h2>Where You Can Go Next</h2>
-        <p>If encryption excites you, there’s so much more to learn:</p>
+        <p>
+            Encryption is integral to modern digital life. It secures biometric data like Face ID, protects location history, and ensures that sensitive information, such as credit card details, remains confidential during online transactions.
+        </p>
+
+        <p>
+            Modern encryption employs complex mathematical algorithms to safeguard data. Key algorithms include:
+        </p>
+
         <ul>
-          <li><strong>Cybersecurity:</strong> Protecting networks, writing secure code, penetration testing</li>
-          <li><strong>Cryptography:</strong> Studying and designing new ciphers, learning about public/private key systems</li>
-          <li><strong>Ethical Hacking:</strong> Using your skills to expose vulnerabilities and improve security</li>
+            <li>
+                <strong>RSA (Rivest–Shamir–Adleman):</strong> A widely used public-key encryption method based on the computational difficulty of factoring large prime numbers. 
+                <a href="https://cdn.stmarytx.edu/wp-content/uploads/2020/10/Cryptography-in-Modern-World.pdf" target="_blank" rel="noopener noreferrer">RSA</a> is fundamental in securing data transmissions and digital signatures.
+
+                <!-- Image: RSA Algorithm Diagram -->
+                <div class="diagram" style="background: transparent; border: none; outline: none;">
+                    <img src="images/rsa-diagram.png" 
+                        alt="Diagram illustrating RSA encryption and decryption process" 
+                        style="width: 90%; height: 126px; object-fit: cover; object-position: top; 
+                            border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background: transparent; outline: none; border: none;">
+
+                    <p style="font-style: italic; font-size: 0.85rem; color: #555; text-align: center; margin-top: 0.4rem;">
+                    Image credit: <a href="https://www.researchgate.net/publication/383100269/figure/fig2/AS:11431281271515115@1723651700145/RSA-encryption-decryption-process-Photo-Picture-credit-Original.png" 
+                    target="_blank" rel="noopener noreferrer">ResearchGate</a>
+                    </p>
+                </div>
+            </li>
+
+            
+            <li>
+              <div style="display: flex; align-items: flex-start; gap: 2rem;">
+                <!-- Text Column -->
+                <div style="flex: 1; max-width: 45%;">
+                  <strong>ECC (Elliptic Curve Cryptography):</strong> Offers similar security to RSA but with smaller key sizes, making it efficient for devices with limited computing power. 
+                  <a href="https://www.sectigo.com/resource-library/rsa-vs-dsa-vs-ecc-encryption" target="_blank" rel="noopener noreferrer">Elliptic Curve Cryptography</a> is increasingly adopted in mobile and IoT devices.
+                   <!-- Small image below the text -->
+                  <!-- Full-width image under text with caption and credit -->
+                  <div style="margin-top: 1rem;">
+                    <img src="images/elliptic-curve.png" alt="Elliptic Curve Diagram"
+                        style="width: 100%; height: auto; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 0.4rem;">
+                    <p style="margin: 0; font-size: 0.85rem; font-weight: bold;">Elliptic Curve</p>
+                    <p style="font-style: italic; font-size: 0.75rem; color: #555; margin: 0;">
+                      Image credit: <a href="https://ee2cc1f8.delivery.rocketcdn.me/wp-content/uploads/2019/08/elliptic-curve-250px.png" target="_blank" rel="noopener noreferrer">SSL</a>
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Image Column -->
+                <div style="width: 350px; margin-left: auto; text-align: center;">
+                  <img src="images/ECC-diagram.png" 
+                      alt="Diagram illustrating ECC encryption and decryption process" 
+                      style="width: 100%; height: 530px; object-fit: fill; object-position: center; 
+                              border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                  <p style="font-style: italic; font-size: 0.75rem; color: #555; margin-top: 0.4rem;">
+                    Image credit: <a href="https://www.researchgate.net/figure/ECC-Encryption-Decryption_fig12_331024357" 
+                    target="_blank" rel="noopener noreferrer">ResearchGate</a>
+                  </p>
+                </div>
+                
+              </div>
+            </li>
+
+
+
+
+            <li>
+            <strong>SHA-256 (Secure Hash Algorithm 256-bit):</strong> A <a href="https://www.analog.com/en/resources/technical-articles/cryptography-a-closer-look-at-the-algorithms.html" target="_blank" rel="noopener noreferrer">cryptographic hash function</a> that ensures data integrity by producing a unique fixed-size 256-bit (32-byte) hash. It's widely used in blockchain technologies and digital certificates.
+            <!-- Image: SHA-256 Hash Function Diagram -->
+            <div class="diagram" style="background: transparent; border: none; outline: none;">
+                <img src="images/sha-256.png" alt="Diagram illustrating SHA-256 hashing process" style="max-width: 80%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <p style="font-style: italic; font-size: 0.85rem; color: #555;">
+                Image credit: <a href="https://www.cast-inc.com/sites/default/files/styles/d06/public/2023-05/sha-256%20block%20diagram_0.png?itok=NEP1muKH" target="_blank" rel="noopener noreferrer">ResearchGate</a>
+                </p>
+            </div>
+            </li>
         </ul>
-        <p>From Caesar to Vigenère, you’ve built a foundation. What comes next? Algorithms like RSA, zero-knowledge proofs, blockchain cryptography, and even quantum encryption.</p>
-        <p><strong>Keep going.</strong> You’re just getting started.</p>
-        <!-- image placeholder -->
-        <img src="images/future-encryption-placeholder.jpg" alt="Image for advanced encryption topics" style="max-width: 100%; margin: 1rem 0; border-radius: 8px;" />
+
+        <p>
+            Understanding these algorithms provides insight into the mechanisms that protect our digital communications, financial transactions, and personal data in the modern world.
+        </p>
+    </div>
+
+
+    <!-- Where to go next --> 
+    <div id="next" class="section">
+      <h2>Where You Can Go Next</h2>
+
+      <p>If encryption excites you, there's so much more to learn:</p>
+
+      <ul>
+        <li>
+          <strong><a href="https://pll.harvard.edu/course/cs50s-introduction-cybersecurity" target="_blank" rel="noopener noreferrer">Cybersecurity</a>:</strong> Protecting networks, writing secure code, penetration testing.
+        </li>
+        <li>
+          <strong><a href="https://thebestvpn.com/cryptography/" target="_blank" rel="noopener noreferrer">Cryptography</a>:</strong> Studying and designing new ciphers, learning about public/private key systems.
+        </li>
+        <li>
+          <strong><a href="https://www.coursera.org/learn/certified-ethical-hacking-v12-ethical-hacking-fundamentals" target="_blank" rel="noopener noreferrer">Ethical Hacking</a>:</strong> Using your skills to expose vulnerabilities and improve security.
+        </li>
+      </ul>
+
+      <p>
+        From Caesar to Vigenère, you've built a foundation. What comes next? Algorithms like RSA, zero-knowledge proofs, blockchain cryptography, and even quantum encryption.
+      </p>
+
+      <p><strong>Keep going. You're just getting started.</strong></p>
+
+      <!-- Image: Cybersecurity Inspiration -->
+      <div class="diagram" style="background: transparent; border: none; outline: none;">
+        <img src="images/cybersecurity.jpg" alt="Illustration representing cybersecurity and encryption concepts" style="max-width: 80%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <p style="font-style: italic; font-size: 0.85rem; color: #555;">
+          Image credit: <a href="https://www.cm-alliance.com/cybersecurity-blog/what-is-cyber-security" target="_blank" rel="noopener noreferrer">CM Alliance</a>
+        </p>
       </div>
+    </div>
+
     </div>
   </div>
 
   <footer>
     <p>CodeCrackers &copy; 2025</p>
   </footer>
-
+  <!-- Scripts -->
   <script src="scripts.js"></script>
 </body>
 </html>
