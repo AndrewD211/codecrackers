@@ -168,13 +168,13 @@ function runCaesar() {
 
   document.getElementById('caesar-output').innerText = result;
 
-  // 🆕 Update the mapping diagram
+  //Update the mapping diagram
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   const shifted = alphabet.map(letter => map[letter]);
   const diagram = `
-Plain:   ${alphabet.join(' ')}
-Shifted: ${shifted.join(' ')}
-  `.trim();
+    Plain:   ${alphabet.join(' ')}
+    Shifted: ${shifted.join(' ')}
+      `.trim(); 
 
   const diagramElement = document.getElementById('mapping-table');
   if (diagramElement) {
