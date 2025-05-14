@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RapidCipher Phase 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RapidCipher</title>
   <style>
     body {
       margin: 0;
@@ -11,17 +11,12 @@
       background: #0d0d0d;
       color: #e0e0e0;
       font-family: 'Courier New', Courier, monospace;
-      overflow-x: hidden;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 2rem;
     }
     #grid {
       position: relative;
       width: 100%;
       max-width: 1000px;
-      height: 1400px;
+      height: 1600px;
       margin: auto;
       background: radial-gradient(ellipse at center, #1f1f1f 0%, #0d0d0d 100%);
       border: 1px solid #333;
@@ -36,9 +31,16 @@
       font-weight: bold;
       border: 2px solid transparent;
       width: 130px;
+      opacity: 0.25;
+      pointer-events: none;
     }
-    .node:hover {
-      transform: scale(1.05);
+    .node.unlocked {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .node.hint {
+      transform: scale(0.6);
+      width: 80px;
     }
     .caesar { background: #1e3a8a; border-color: #60a5fa; color: #fff; }
     .substitution { background: #92400e; border-color: #fbbf24; color: #fff; }
@@ -63,9 +65,6 @@
     }
     .panel.active {
       right: 0;
-    }
-    .panel h2 {
-      margin-bottom: 1rem;
     }
     .panel .cipher-text {
       background: #333;
@@ -98,22 +97,75 @@
     .overlay.active {
       display: block;
     }
+
+    .glow-hint {
+      animation: pulseGlow 1.5s infinite;
+      box-shadow: 0 0 10px #f0f, 0 0 20px #f0f;
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 10px #f0f; }
+      50% { box-shadow: 0 0 20px #f0f; }
+      100% { box-shadow: 0 0 10px #f0f; }
+    }
+    .node.completed {
+      border-color: #4ade80 !important;
+      box-shadow: 0 0 10px #4ade80;
+      opacity: 0.95;
+    }
+
+    .glow-hint {
+      animation: pulseGlow 1.5s infinite;
+      box-shadow: 0 0 10px #f0f, 0 0 20px #f0f;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 10px #f0f; }
+      50% { box-shadow: 0 0 20px #f0f; }
+      100% { box-shadow: 0 0 10px #f0f; }
+    }
+    #quizOptions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    #quizOptions button {
+      background: #2c3e50;
+      color: white;
+      border: none;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 1rem;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    #quizOptions button:hover {
+      background: #3f5873;
+      transform: scale(1.02);
+    }
+
+    #quizOptions button.correct {
+      background-color: #14532d;
+      border: 2px solid #4ade80;
+    }
+
+    #quizOptions button.incorrect {
+      background-color: #7f1d1d;
+      border: 2px solid #f87171;
+    }
+
+    #quizFeedback {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
   </style>
 </head>
-
-
-
 <body>
-  <!-- Quiz Modal -->
-<div id="quizModal" class="overlay" style="display:none; background: rgba(0,0,0,0.85); z-index: 999;">
-  <div style="background:#1a1a1a; color:#fff; max-width:500px; margin:5% auto; padding:2rem; border-radius:10px;">
-    <h2 id="quizQuestion"></h2>
-    <div id="quizOptions"></div>
-    <p id="quizFeedback" style="margin-top:1rem;"></p>
-    <button onclick="closeQuiz()">Cancel</button>
-  </div>
-</div>
-  <h1>RapidCipher</h1>
+  <h1 style="text-align:center;">RapidCipher</h1>
   <div id="grid"></div>
   <div class="overlay" id="overlay" onclick="closePanel()"></div>
   <div class="panel" id="panel">
@@ -123,171 +175,278 @@
     <button onclick="submitAnswer()">Submit</button>
     <p id="feedback" style="margin-top:1rem;"></p>
   </div>
+  <div id="quizModal" class="overlay" style="background: rgba(0,0,0,0.85); z-index: 999;">
+    <div style="background:#1a1a1a; color:#fff; max-width:500px; margin:5% auto; padding:2rem; border-radius:10px;">
+      <h2 id="quizQuestion"></h2>
+      <div id="quizOptions"></div>
+      <p id="quizFeedback" style="margin-top:1rem;"></p>
+      <button onclick="closeQuiz()">Cancel</button>
+    </div>
+  </div>
   <script>
-    let correctAnswer = '';
-    const caesarShift = 3;
-    const sampleWords = ["HELLO", "WORLD", "CIPHER", "MESSAGE", "ENCRYPT", "SECRET", "AGENT"];
-    const colorGroups = ['blue', 'green', 'orange'];
-    const positions = [
-      { top: 100, left: 80 }, { top: 240, left: 180 }, { top: 380, left: 60 }, { top: 520, left: 160 },
-      { top: 100, left: 400 }, { top: 300, left: 360 }, { top: 500, left: 420 },
-      { top: 200, left: 660 }, { top: 400, left: 660 },
-      { top: 90, left: 800 }, { top: 200, left: 820 }, { top: 300, left: 800 },
-      { top: 400, left: 820 }, { top: 500, left: 800 }, { top: 600, left: 780 },
-      { top: 720, left: 400 }, { top: 800, left: 200 }, { top: 880, left: 500 }
-    ];
-    let posIndex = 0;
-
-    function caesarEncrypt(text, shift = caesarShift) {
-      return text.toUpperCase().replace(/[A-Z]/g, char =>
-        String.fromCharCode(((char.charCodeAt(0) - 65 + shift) % 26) + 65)
-      );
-    }
-    function substitutionEncrypt(text) {
-      const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      const shuffled = [...alphabet].sort(() => 0.5 - Math.random()).join('');
-      const map = Object.fromEntries([...alphabet].map((c, i) => [c, shuffled[i]]));
-      return text.toUpperCase().replace(/[A-Z]/g, c => map[c] || c);
-    }
-    function vigenereEncrypt(text, keyword) {
-      keyword = keyword.toUpperCase();
-      let result = "";
-      for (let i = 0, j = 0; i < text.length; i++) {
-        const c = text[i].toUpperCase();
-        if (/[A-Z]/.test(c)) {
-          const k = keyword[j++ % keyword.length];
-          result += String.fromCharCode(((c.charCodeAt(0) + k.charCodeAt(0) - 130) % 26) + 65);
-        } else result += c;
-      }
-      return result;
-    }
-    function openPanel(type, cipher, answer, label = null) {
-      document.getElementById('panelTitle').innerText = `${type} Cipher`;
-      document.getElementById('cipherText').innerText = cipher;
-      correctAnswer = answer.toUpperCase();
-
-      const hintText = (label && unlockedHints[label]) ? cipherHints[label] : null;
-      const hintBox = hintText ? `<div style="margin: 1rem 0; background:#254; padding:1rem; border-radius:6px;"><strong>Hint:</strong> ${hintText}</div>` : '';
-
-      document.getElementById('feedback').innerHTML = hintBox;
-      document.getElementById('userInput').value = '';
-      document.getElementById('panel').classList.add('active');
-      document.getElementById('overlay').classList.add('active');
-    }
-
-    function closePanel() {
-      document.getElementById('panel').classList.remove('active');
-      document.getElementById('overlay').classList.remove('active');
-    }
-    function submitAnswer() {
-      const input = document.getElementById('userInput').value.trim().toUpperCase();
-      const feedback = document.getElementById('feedback');
-      feedback.innerText = input === correctAnswer ? '✔ Correct!' : '✖ Incorrect. Try again.';
-    }
-    function nodeClicked(label, group = null) {
-      if (group) {
-        unlockedHints[group] = true;
-        alert(`Hint for group "${group}" unlocked!`);
-      } else {
-        alert(`You clicked on ${label}`);
-      }
-    }
-    function addNode(label, type, group = null) {
-      const grid = document.getElementById('grid');
-      const div = document.createElement('div');
-      div.className = `node ${type.toLowerCase()}`;
-      div.innerText = label;
-      const pos = positions[posIndex++];
-      div.style.top = `${pos.top}px`;
-      div.style.left = `${pos.left}px`;
-      if (type === 'Hint') {
-        div.onclick = () => {
-          if (unlockedHints[label]) {
-            openPanel(type, encrypted, word, label);
-          } else {
-            showQuiz(label, type, encrypted, word);
-          }
-        };
-
-      } else {
-        const word = sampleWords[Math.floor(Math.random() * sampleWords.length)];
-        const encrypted =
-          type === 'Caesar' ? caesarEncrypt(word) :
-          type === 'Substitution' ? substitutionEncrypt(word) :
-          vigenereEncrypt(word, 'KEY');
-        div.onclick = () => openPanel(type, encrypted, word);
-      }
-      grid.appendChild(div);
-    }
-    for (let i = 0; i < 4; i++) addNode(`Caesar ${String.fromCharCode(65+i)}`, 'Caesar', colorGroups[i % 3]);
-    for (let i = 0; i < 3; i++) addNode(`Substitution ${String.fromCharCode(65+i)}`, 'Substitution', colorGroups[i % 3]);
-    for (let i = 0; i < 2; i++) addNode(`Vigenère ${String.fromCharCode(65+i)}`, 'Vigenère', colorGroups[i % 3]);
-    for (let i = 0; i < 7; i++) addNode(`Hint ${i+1}`, 'Hint', colorGroups[i % 3]);
- 
-    const unlockedHints = {};  // { "Caesar A": true, ... }
-
+    const grid = document.getElementById("grid");
+    const completed = {};
+    const unlockedHints = {};
+    const hintMessages = {
+      "Caesar A": "Try shifting each letter by 3.",
+      "Caesar B": "The word 'WORLD' becomes ZRUOG with a Caesar shift of 3.",
+      "Caesar C": "If you get FRGHV, you're on the right track.",
+      "Caesar D": "Shift of 3 wraps letters from Z back to A.",
+      "Substitution A": "The word is reversed — read it backwards.",
+      "Substitution B": "The mapping flips start and end letters.",
+      "Substitution C": "Watch for palindromes in the reversed form.",
+      "Vigenère A": "Keyword is KEY — repeat it to match message length.",
+      "Vigenère B": "Try decrypting ENCRYPT with keyword LOCK."
+    };
     const quizBank = {
-      "Caesar A": {
-        question: "What is a Caesar cipher?",
-        options: ["A polyalphabetic cipher", "A shift cipher", "A cipher using emojis", "A cipher that rearranges letters"],
-        answer: "A shift cipher"
+      "Hint 1": {
+        unlocks: "Hint 1",
+        target: "Caesar A",
+        question: "Which ancient ruler used a simple letter shift to encrypt military messages?",
+        options: [
+          "Leon Battista Alberti",
+          "Julius Caesar",
+          "Al-Kindi",
+          "Blaise de Vigenère"
+        ],
+        answer: "Julius Caesar"
       },
-      "Substitution A": {
-        question: "What makes a substitution cipher different from Caesar?",
-        options: ["It uses punctuation", "It uses random mappings", "It uses spaces", "It requires a number key"],
-        answer: "It uses random mappings"
+      "Hint 2": {
+        unlocks: "Hint 2",
+        target: "Caesar B",
+        question: "Which tool used a strip of parchment wrapped around a wooden rod to hide messages?",
+        options: [
+          "Cipher disk",
+          "Scytale",
+          "Jefferson wheels",
+          "Enigma rotor"
+        ],
+        answer: "Scytale"
       },
-      // Add more here as needed...
+      "Hint 3": {
+        unlocks: "Hint 3",
+        target: "Caesar C",
+        question: "Which text from ancient India included advice on code and substitution?",
+        options: [
+          "The Arthashastra",
+          "The Dead Sea Scrolls",
+          "The Rosetta Stone",
+          "The Dharma Bums"
+        ],
+        answer: "The Arthashastra"
+      },
+      "Hint 4": {
+        unlocks: "Hint 4",
+        target: "Caesar D",
+        question: "Who invented the cipher disk in the 1400s?",
+        options: [
+          "Julius Caesar",
+          "Thomas Jefferson",
+          "Blaise de Vigenère",
+          "Leon Battista Alberti"
+        ],
+        answer: "Leon Battista Alberti"
+      },
+      "Hint 5": {
+        unlocks: "Hint 5",
+        target: "Substitution A",
+        question: "What 9th-century method broke substitution ciphers using letter patterns?",
+        options: [
+          "Polyalphabetic shifting",
+          "Brute force",
+          "Frequency analysis",
+          "Public-key infrastructure"
+        ],
+        answer: "Frequency analysis"
+      },
+      "Hint 6": {
+        unlocks: "Hint 6",
+        target: "Substitution B",
+        question: "What encryption method published in 1586 remained strong for centuries?",
+        options: [
+          "Jefferson Disk",
+          "Vigenère Cipher",
+          "Enigma",
+          "RSA"
+        ],
+        answer: "Vigenère Cipher"
+      },
+      "Hint 7": {
+        unlocks: "Hint 7",
+        target: "Substitution C",
+        question: "Which encryption standard adopted in 2001 replaced DES?",
+        options: [
+          "RSA",
+          "AES",
+          "PGP",
+          "ECC"
+        ],
+        answer: "AES"
+      }
     };
 
-    let quizTargetNode = null;
-    function showQuiz(label, type, cipher, answer) {
-      quizTargetNode = { label, type, cipher, answer };
-      const q = quizBank[label];
-      if (!q) {
-        alert("No quiz found for this challenge."); // fallback
-        return;
-      }
 
-      document.getElementById("quizQuestion").innerText = q.question;
-      const opts = q.options.sort(() => Math.random() - 0.5);
-      const quizOptions = document.getElementById("quizOptions");
-      quizOptions.innerHTML = "";
-      opts.forEach(opt => {
-        const btn = document.createElement("button");
-        btn.innerText = opt;
-        btn.style.display = "block";
-        btn.style.margin = "0.5rem 0";
-        btn.onclick = () => checkAnswer(opt);
-        quizOptions.appendChild(btn);
-      });
-
-      document.getElementById("quizFeedback").innerText = "";
-      document.getElementById("quizModal").style.display = "block";
+    function caesarEncrypt(word, shift = 3) {
+      return word.toUpperCase().replace(/[A-Z]/g, c =>
+        String.fromCharCode(((c.charCodeAt(0) - 65 + shift) % 26) + 65));
     }
 
-    function checkAnswer(selected) {
-      const { label, type, cipher, answer } = quizTargetNode;
-      const correct = quizBank[label].answer;
-      const feedback = document.getElementById("quizFeedback");
+    function openPanel(type, encrypted, answer, label) {
+      document.getElementById("panelTitle").innerText = `${type} Cipher`;
+      document.getElementById("cipherText").innerText = encrypted;
+      document.getElementById("userInput").value = '';
+      const hint = unlockedHints[label];
+      const glow = (label === "Vigenère A" && allCaesarsDone()) || (label === "Vigenère B" && allSubsDone());
+      document.getElementById("feedback").innerHTML = hint ? 
+        `<div class="${glow ? 'glow-hint' : ''}" style="background:#254; padding:1rem; border-radius:6px;"><strong>Hint:</strong> ${hint}</div>` : '';
+      document.getElementById("panel").classList.add("active");
+      document.getElementById("overlay").classList.add("active");
+      document.getElementById("userInput").onkeydown = e => {
+        if (e.key === "Enter") submitAnswer(answer, label);
+      };
+      document.querySelector(".panel button").onclick = () => submitAnswer(answer, label);
+    }
 
-      if (selected === correct) {
-        unlockedHints[label] = true;
-        feedback.innerText = "✅ Correct! Hint unlocked.";
-        setTimeout(() => {
-          closeQuiz();
-          openPanel(type, cipher, answer, label);
-        }, 800);
+    function submitAnswer(correct, label) {
+      const input = document.getElementById("userInput").value.trim().toUpperCase();
+      const feedback = document.getElementById("feedback");
+
+      if (input === correct.toUpperCase()) {
+        if (!completed[label]) {
+          completed[label] = true;
+          document.getElementById(label)?.classList.add("completed");
+          checkUnlocks();
+          feedback.innerText = "✔ Correct!";
+        } else {
+          feedback.innerText = "✔ Already solved.";
+        }
       } else {
-        feedback.innerText = "❌ Incorrect. Try again.";
+        feedback.innerText = "✖ Incorrect. Try again.";
       }
     }
 
+
+   function showQuiz(label) {
+    const q = quizBank[label];
+    if (!q) return alert("No quiz found.");
+  
+    const questionBox = document.getElementById("quizQuestion");
+    const quizOptions = document.getElementById("quizOptions");
+    const quizFeedback = document.getElementById("quizFeedback");
+
+    questionBox.innerText = q.question;
+    quizOptions.innerHTML = "";
+    quizFeedback.innerText = "";
+
+    q.options.sort(() => Math.random() - 0.5).forEach(opt => {
+      const btn = document.createElement("button");
+      btn.innerText = opt;
+      btn.onclick = () => {
+        if (opt === q.answer) {
+          unlockedHints[q.target] = hintMessages[q.target];
+          unlock(q.unlocks);
+          quizFeedback.innerText = `✅ Hint unlocked for ${q.target}`;
+          checkUnlocks();
+          setTimeout(closeQuiz, 800);
+        } else {
+          quizFeedback.innerText = "❌ Try again.";
+        }
+      };
+      quizOptions.appendChild(btn);
+    });
+
+     document.getElementById("quizModal").style.display = "block";
+    }
+
+
+    function closePanel() {
+      document.getElementById("panel").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+    }
     function closeQuiz() {
       document.getElementById("quizModal").style.display = "none";
-      document.getElementById("quizFeedback").innerText = "";
     }
 
- </script>
+   function unlock(label) {
+      const el = document.getElementById(label);
+      if (el) {
+        el.classList.add("unlocked");
+        if (label.startsWith("Hint")) {
+          el.classList.add("glow-hint");
+        }
+      }
+    }
+
+
+    function allCaesarsDone() {
+      return ["Caesar A", "Caesar B", "Caesar C", "Caesar D"].every(k => completed[k]);
+    }
+
+    function allSubsDone() {
+      return ["Substitution A", "Substitution B", "Substitution C"].every(k => completed[k]);
+    }
+
+    function checkUnlocks() {
+      if (["Caesar A", "Caesar B", "Caesar C"].filter(k => completed[k]).length >= 3) {
+        ["Substitution A", "Substitution B", "Substitution C", "Hint 5", "Hint 6", "Hint 7"].forEach(unlock);
+      }
+      if (["Substitution A", "Substitution B"].filter(k => completed[k]).length >= 2) {
+        ["Vigenère A", "Vigenère B"].forEach(unlock);
+      }
+    }
+
+    function addNode(label, type, top, left, encrypted, answer, quiz = false) {
+      const div = document.createElement("div");
+      div.id = label;
+      div.className = `node ${type.toLowerCase()} ${type === 'Hint' ? 'hint' : ''}`;
+      div.innerText = label;
+      div.style.top = top + "px";
+      div.style.left = left + "px";
+
+      // UNLOCK ONLY Caesar + Hint 1–4 at start
+      const isInitiallyUnlocked = label.startsWith("Caesar") || (label.startsWith("Hint") && parseInt(label.split(" ")[1]) <= 4);
+      if (isInitiallyUnlocked) div.classList.add("unlocked");
+
+      div.onclick = () => {
+        if (type === "Hint") showQuiz(label);
+        else openPanel(type, encrypted, answer, label);
+      };
+      grid.appendChild(div);
+    }
+
+    ["A", "B", "C", "D"].forEach((l, i) => {
+      const words = ["HELLO", "WORLD", "CODES", "SHIFT"];
+      const encrypted = caesarEncrypt(words[i], 3);
+      addNode(`Caesar ${l}`, "Caesar", 100, 100 + i * 180, encrypted, words[i]);
+      addNode(`Hint ${i + 1}`, "Hint", 200, 100 + i * 180, "", "");
+    });
+
+    ["A", "B", "C"].forEach((l, i) => {
+      const words = ["SECRET", "PUZZLE", "LOCKED"];
+      const encrypted = words[i].split("").reverse().join("");
+      addNode(`Substitution ${l}`, "Substitution", 400, 150 + i * 220, encrypted, words[i]);
+      addNode(`Hint ${i + 5}`, "Hint", 500, 150 + i * 220, "", "");
+    });
+
+    ["A", "B"].forEach((l, i) => {
+      const data = [
+        { plain: "DEFEND", keyword: "KEY" },     // => NIQHPL
+        { plain: "ENCRYPT", keyword: "LOCK" }    // => PVJXHXD
+      ];
+      const enc = runVigenereEncrypt(data[i].plain, data[i].keyword);
+      addNode(`Vigenère ${l}`, "Vigenère", 700, 200 + i * 240, enc, data[i].plain);
+    });
+    function runVigenereEncrypt(msg, key) {
+      msg = msg.toUpperCase().replace(/[^A-Z]/g, "");
+      key = key.toUpperCase();
+      let out = "";
+      for (let i = 0; i < msg.length; i++) {
+        const m = msg.charCodeAt(i) - 65;
+        const k = key.charCodeAt(i % key.length) - 65;
+        out += String.fromCharCode((m + k) % 26 + 65);
+      }
+      return out;
+    }
+  </script>
 </body>
 </html>

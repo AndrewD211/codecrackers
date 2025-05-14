@@ -7,47 +7,91 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-   <!-- Hamburger -->
-   <div id="menu-toggle" onclick="toggleMenu()">☰</div>
-
-   <!-- Slide-in Nav -->
-   <div id="side-menu" class="side-menu">
-     <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">×</a>
-     <a href="index.html">Home</a>
-     <a href="intro.html">Introduction</a>
-     <a href="caesarcipher.html">Caesar Cipher</a>
-     <a href="substitutioncipher.html">Substitution Cipher</a>
-     <a href="vigenerecipher.html">Vigenère Cipher</a>
-     <a href="review.html">Review & Quizzes</a>
-     <a href="realworld.html">Real World Encryption</a>
-     <a href="game.html">RapidCipher</a>
-     <a href="resources.html">Resources</a>
-   </div>
+  <!-- Hamburger -->
+  <div id="menu-toggle" onclick="toggleMenu()">☰</div>
+  <!-- Slide-in Nav -->
+  <div id="side-menu" class="side-menu">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">×</a>
+    <a href="index.html">Home</a>
+    <a href="intro.html">Introduction</a>
+    <a href="caesarcipher.html">Caesar Cipher</a>
+    <a href="substitutioncipher.html">Substitution Cipher</a>
+    <a href="vigenerecipher.html">Vigenère Cipher</a>
+    <a href="review.html">Review & Quizzes</a>
+    <a href="realworld.html">Real World Encryption</a>
+    <a href="game.html">RapidCipher</a>
+    <a href="resources.html">Resources</a>
+  </div>
   <header>
     <h1>CodeCrackers Resource Center</h1>
   </header>
 
   <main>
-    <section class="module-section">
-      <h2>Downloads: Practice & Guides</h2>
-      <p>These downloads are designed to reinforce what you've learned in each module.</p>
-      <ul>
-        <li>📄 <a href="downloads/caesar-guide.pdf" download>Caesar Cipher Quick Guide (PDF)</a></li>
-        <li>📄 <a href="downloads/substitution-practice.pdf" download>Substitution Cipher Practice Sheet (PDF)</a></li>
-        <li>📄 <a href="downloads/vigenere-cheatsheet.pdf" download>Vigenère Cipher Cheat Sheet (PDF)</a></li>
-        <li>📄 <a href="downloads/rapidcipher-answerkey.pdf" download>RapidCipher Answer Key (PDF)</a></li>
-      </ul>
-    </section>
 
     <section class="module-section">
-      <h2>Learn More: External Resources</h2>
-      <p>These links offer more ways to explore classical and modern cryptography.</p>
+  <h2>Learn More: External Resources</h2>
+  <p>Explore these curated tools and learning hubs to go beyond the basics and deepen your understanding of cryptography and security.</p>
+  <ul class="resource-links">
+    <li>
+      🔗 <a href="https://www.khanacademy.org/computing/computer-science/cryptography" target="_blank" rel="noopener noreferrer"><strong>Khan Academy – Cryptography</strong></a><br>
+      <span class="resource-desc">A beginner-friendly series covering classical and modern cryptographic principles with interactive exercises.</span>
+    </li>
+    <li>
+      🔗 <a href="https://www.nsa.gov/Academics/Crypto-Activities/" target="_blank" rel="noopener noreferrer"><strong>NSA Crypto Activities for Students</strong></a><br>
+      <span class="resource-desc">Official NSA portal featuring puzzles, crypto history, and downloadable activities for students and educators.</span>
+    </li>
+    <li>
+      🔗 <a href="https://gchq.github.io/CyberChef/" target="_blank" rel="noopener noreferrer"><strong>CyberChef by GCHQ</strong></a><br>
+      <span class="resource-desc">A powerful browser-based tool for encryption, encoding, decoding, and analysis — useful for testing and exploring ciphers hands-on.</span>
+    </li>
+    <li>
+      🔗 <a href="https://crypto.interactive-maths.com/frequency-analysis-breaking-the-code.html" target="_blank" rel="noopener noreferrer"><strong>InteractiveMath – Frequency Analysis</strong></a><br>
+      <span class="resource-desc">A visual and hands-on explanation of how to use letter frequency to crack monoalphabetic substitution ciphers like ROT13 or random maps.</span>
+    </li>
+    <li>
+      🔗 <a href="https://en.wikipedia.org/wiki/Classical_cipher" target="_blank" rel="noopener noreferrer"><strong>Wikipedia: Classical Cipher List</strong></a><br>
+      <span class="resource-desc">A comprehensive index of classical encryption methods and historical ciphers with references to further reading.</span>
+    </li>
+  </ul>
+</section>
+
+
+    <section class="module-section">
+      <h2>Citations</h2>
+
+      <h3>Encryption Definitions & History</h3>
       <ul>
-        <li>🔗 <a href="https://www.khanacademy.org/computing/computer-science/cryptography" target="_blank">Khan Academy – Cryptography</a></li>
-        <li>🔗 <a href="https://www.nsa.gov/Academics/Crypto-Activities/" target="_blank">NSA Crypto Activities for Students</a></li>
-        <li>🔗 <a href="https://gchq.github.io/CyberChef/" target="_blank">CyberChef by GCHQ</a></li>
-        <li>🔗 <a href="https://en.wikipedia.org/wiki/Classical_cipher" target="_blank">Wikipedia: Classical Cipher List</a></li>
+        <li><a href="https://csrc.nist.gov/glossary/term/encryption" target="_blank">NIST Glossary: Encryption</a></li>
+        <li><a href="https://ssd.eff.org/en/module/introduction-encryption-and-how-it-protects-you" target="_blank">EFF: Intro to Encryption</a></li>
+        <li><a href="https://www.britishmuseum.org/collection/object/Y_EA37983" target="_blank">British Museum: Ancient Egyptian Encryption</a></li>
+        <li><a href="https://blog.hidglobal.com/cryptography-then-and-now" target="_blank">HID Global: Mesopotamian Trade Cipher</a></li>
+        <li><a href="https://www.britannica.com/technology/scytale" target="_blank">Britannica: Scytale Cipher</a></li>
+        <li><a href="https://pragyata.com/espionage-in-kautilyas-arthasastra/" target="_blank">Pragyata: Arthashastra Encryption</a></li>
+        <li><a href="https://www.nsa.gov/.../41748889078809.pdf" target="_blank">NSA Archive: Julius Caesar Letter Shift</a></li>
+        <li><a href="https://muslimheritage.com/al-kindi-cryptography/" target="_blank">Al-Kindi & Frequency Analysis</a></li>
+        <li><a href="https://www.britannica.com/technology/cipher-disk" target="_blank">Britannica: Cipher Disk</a></li>
+        <li><a href="https://www.monticello.org/.../wheel-cipher/" target="_blank">Monticello: Jefferson Wheel Cipher</a></li>
+        <li><a href="https://bletchleypark.org.uk/our-story/enigma/" target="_blank">Bletchley Park & Enigma</a></li>
       </ul>
+
+      <h3>Cipher Tutorials & Technical Explanations</h3>
+      <ul>
+        <li><a href="https://www.geeksforgeeks.org/caesar-cipher-in-cryptography/" target="_blank">GeeksforGeeks: Caesar Cipher</a></li>
+        <li><a href="https://www.geeksforgeeks.org/what-is-monoalphabetic-cipher/" target="_blank">GeeksforGeeks: Monoalphabetic Cipher</a></li>
+        <li><a href="https://crypto.interactive-maths.com/frequency-analysis-breaking-the-code.html" target="_blank">InteractiveMath: Frequency Analysis</a></li>
+        <li><a href="https://www.geeksforgeeks.org/vigenere-cipher/" target="_blank">GeeksforGeeks: Vigenère Cipher</a></li>
+      </ul>
+
+      <h3>Modern Encryption Algorithms</h3>
+      <ul>
+        <li><a href="https://cdn.stmarytx.edu/wp-content/uploads/2020/10/Cryptography-in-Modern-World.pdf" target="_blank">Modern Cryptography Overview (St. Mary's)</a></li>
+        <li><a href="https://www.sectigo.com/resource-library/rsa-vs-dsa-vs-ecc-encryption" target="_blank">Sectigo: RSA vs ECC</a></li>
+        <li><a href="https://www.analog.com/en/resources/technical-articles/cryptography-a-closer-look-at-the-algorithms.html" target="_blank">Analog: SHA & Crypto Algorithms</a></li>
+        <li><a href="https://www.cs.jhu.edu/~rubin/courses/sp03/papers/diffie.hellman.pdf" target="_blank">Diffie-Hellman Paper</a></li>
+        <li><a href="https://www.invent.org/inductees/leonard-adleman" target="_blank">Adleman & RSA</a></li>
+        <li><a href="https://csrc.nist.gov/publications/detail/fips/197/final" target="_blank">NIST: AES Standard</a></li>
+      </ul>
+
     </section>
   </main>
 
