@@ -46,11 +46,19 @@
       transform-style: preserve-3d;
       transition: transform 0.6s ease, opacity 0.6s ease;
     }
+      header .banner-wrapper h1 {
+      color: white !important;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 1px 1px 2px black;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Welcome to CodeCrackers</h1>
+    <div class="banner-wrapper">
+  <h1 style="color: white; -webkit-text-stroke: 1px black; text-shadow: 1px 1px 2px black;">Welcome to CodeCrackers!</h1>
+</div>
   </header>
   <!-- Main Introduction -->
   <main>
@@ -68,11 +76,7 @@
         </div>
       </div>
 
-      <!-- TODO: FIND IMAGE -->
-      <div style="margin-top: 3rem;">
-        <img src="images/hero-placeholder.jpg" alt= style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <p style="font-style: italic; color: #777;">(Image placeholder)</p>
-      </div>
+     
     </section>
   </main>
 

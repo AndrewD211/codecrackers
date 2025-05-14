@@ -18,6 +18,9 @@ h1, h2, h3, h4 {
 h1 {
   font-size: 2rem;
   margin-top: 0;
+  color: white;
+  -webkit-text-stroke: 1px black; /* Outline */
+
 }
 
 h2 {
@@ -606,4 +609,26 @@ body.dark-mode button {
     color: #f0f0f0;
   }
 }
+
+/* ===============================
+   BANNER STYLES
+ =============================== */
+.banner-wrapper {
+  position: relative;
+  background-image: url("images/banner.png");
+  background-size: cover;
+  background-position: center;
+  padding: 80px 20px; 
+  text-align: center;
+  color: white; 
+}
+
+.banner-wrapper h1 {
+  position: relative;
+  z-index: 1;
+  font-size: 3em;
+  margin: 0;
+}
+
+
 
