@@ -8,6 +8,19 @@
 </head>
 <body>
   <h1 style="text-align:center;">RapidCipher</h1>
+  <h3 style="cursor:pointer;" onclick="toggleInstructions()">▸ How to Play</h3>
+  <div id="instructionsBox" style="display:none; background:#1a1a1a; padding:1rem; border-radius:8px; margin-bottom:1rem;">
+    <p><strong>Objective:</strong> Solve all cipher challenges by decoding the messages correctly.</p>
+    <ul style="padding-left: 1.25rem;">
+      <li>Click a cipher node to open the challenge.</li>
+      <li>You’ll have 45 seconds to decode each message.</li>
+      <li>All ciphers have hints — earn them by answering quiz questions.</li>
+      <li>Vigenère hints unlock by completing all ciphers for given level.</li>
+      <li>Points are awarded based on how fast you solve each puzzle.</li>
+    </ul>
+    <p>Complete all challenges to win. Good luck, agent.</p>
+  </div>
+
   <div id="scoreDisplay" style="text-align:center; margin-bottom: 1rem; font-weight:bold;">
     Score: <span id="scoreValue">0</span>
   </div>
@@ -20,6 +33,7 @@
     <div class="cipher-text">Encrypted Text: <span id="cipherText"></span></div>
     <input type="text" id="userInput" placeholder="Enter your answer" />
     <button>Submit</button>
+    <div id="hintBox" style="margin-top:1rem;"></div>
     <p id="feedback" style="margin-top:1rem;"></p>
   </div>
 
@@ -31,6 +45,15 @@
       <button onclick="closeQuiz()">Cancel</button>
     </div>
   </div>
+
+  <div id="victoryModal" class="overlay" style="background: rgba(0,0,0,0.85); z-index: 9999;">
+    <div style="background:#1a1a1a; color:#fff; max-width:500px; margin:10% auto; padding:2rem; border-radius:10px; text-align:center;">
+      <h2>🎉 You cracked them all!</h2>
+      <p style="margin:1rem 0;">Final Score: <span id="finalScore"></span></p>
+      <button onclick="location.reload()">Play Again</button>
+    </div>
+  </div>
+
 
   <script src="rapidcipher-data.js"></script>
   <script src="rapidcipher-core.js"></script>

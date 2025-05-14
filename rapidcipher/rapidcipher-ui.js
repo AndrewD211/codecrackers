@@ -1,10 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("grid");
+  const hintToCipher = {};
+  Object.values(quizBank).forEach(q => {
+    hintToCipher[q.unlocks] = q.target;
+  });
+
+  const cipherToHint = {};
+  Object.entries(hintToCipher).forEach(([hint, cipher]) => {
+    cipherToHint[cipher] = hint;
+  });
 
   function addNode(label, type, top, left, encrypted, answer) {
     const div = document.createElement("div");
     div.id = label;
-    div.className = `node ${type.toLowerCase()} ${type === 'Hint' ? 'hint' : ''}`;
+    const normalized = type.toLowerCase().replace(/[èé]/g, 'e');
+    div.className = `node ${normalized} ${type === 'Hint' ? 'hint' : ''}`;
     div.innerText = label;
     div.style.top = top + "px";
     div.style.left = left + "px";
@@ -26,9 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("userInput").disabled = false;
     document.querySelector(".panel button").disabled = false;
 
-    const hint = RapidCipherState.unlockedHints[label];
+    let hint = RapidCipherState.unlockedHints[label];
+    if (!hint) {
+      const hintKey = cipherToHint[label];
+      if (hintKey) hint = RapidCipherState.unlockedHints[hintKey];
+    }
+
     const glow = (label === "Vigenère A" && allCaesarsDone()) || (label === "Vigenère B" && allSubsDone());
-    document.getElementById("feedback").innerHTML = hint ?
+    document.getElementById("hintBox").innerHTML = hint ?
       `<div class="${glow ? 'glow-hint' : ''}" style="background:#254; padding:1rem; border-radius:6px;"><strong>Hint:</strong> ${hint}</div>` : '';
 
     document.getElementById("panel").classList.add("active");
@@ -101,12 +116,30 @@ document.addEventListener("DOMContentLoaded", () => {
     addNode(`Hint ${i + 1}`, "Hint", 200, 100 + i * 180, "", "");
   });
 
-  ["A", "B", "C"].forEach((l, i) => {
-    const words = ["SECRET", "PUZZLE", "LOCKED"];
-    const encrypted = words[i].split("").reverse().join("");
-    addNode(`Substitution ${l}`, "Substitution", 400, 150 + i * 220, encrypted, words[i]);
-    addNode(`Hint ${i + 5}`, "Hint", 500, 150 + i * 220, "", "");
-  });
+  const subsData = [
+    {
+      label: "Substitution A",
+      plain: "SECRET",
+      map: { S: "D", E: "Q", C: "A", R: "L", T: "M" }, // Only needed letters mapped
+    },
+    {
+      label: "Substitution B",
+      plain: "PUZZLE",
+      map: { P: "G", U: "W", Z: "K", L: "N", E: "T" },
+    },
+    {
+      label: "Substitution C",
+      plain: "LOCKED",
+      map: { L: "P", O: "X", C: "Z", K: "B", E: "J", D: "H" },
+    }
+  ];
+
+subsData.forEach(({ label, plain, map }, i) => {
+  const encrypted = plain.split("").map(ch => map[ch] || ch).join("");
+  addNode(label, "Substitution", 400, 150 + i * 220, encrypted, plain);
+  addNode(`Hint ${i + 5}`, "Hint", 500, 150 + i * 220, "", "");
+});
+
 
   ["A", "B"].forEach((l, i) => {
     const data = [
@@ -116,4 +149,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const enc = RapidCipherCore.runVigenereEncrypt(data[i].plain, data[i].keyword);
     addNode(`Vigenère ${l}`, "Vigenère", 700, 200 + i * 240, enc, data[i].plain);
   });
+
+ window.toggleInstructions = function () {
+  const box = document.getElementById("instructionsBox");
+  const header = box.previousElementSibling;
+  const expanded = box.style.display === "block";
+  box.style.display = expanded ? "none" : "block";
+  header.innerHTML = expanded ? "▸ How to Play" : "▾ How to Play";
+};
+ 
 });

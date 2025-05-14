@@ -48,7 +48,16 @@ function checkUnlocks() {
   if (["Substitution A", "Substitution B"].filter(k => completed[k]).length >= 2) {
     ["Vigenère A", "Vigenère B"].forEach(unlock);
   }
-}
+
+  if (["Caesar A", "Caesar B", "Caesar C", "Caesar D"].every(k => completed[k])) {
+    RapidCipherState.unlockedHints["Vigenère A"] = hintMessages["Vigenère A"];
+  }
+
+  if (["Substitution A", "Substitution B", "Substitution C"].every(k => completed[k])) {
+    RapidCipherState.unlockedHints["Vigenère B"] = hintMessages["Vigenère B"];
+  }
+
+  }
 
 function startTimer(label) {
   clearInterval(RapidCipherState.timerInterval);
@@ -77,6 +86,7 @@ function submitAnswer(correct, label) {
       RapidCipherState.completed[label] = true;
       document.getElementById(label)?.classList.add("completed");
       checkUnlocks();
+      checkVictory();
       clearInterval(RapidCipherState.timerInterval);
       const earned = Math.max(5, RapidCipherState.timeRemaining);
       RapidCipherState.score += earned;
@@ -87,6 +97,21 @@ function submitAnswer(correct, label) {
     }
   } else {
     feedback.innerText = "✖ Incorrect. Try again.";
+  }
+}
+
+function checkVictory() {
+  const allCiphers = [
+    "Caesar A", "Caesar B", "Caesar C", "Caesar D",
+    "Substitution A", "Substitution B", "Substitution C",
+    "Vigenère A", "Vigenère B"
+  ];
+
+  const won = allCiphers.every(label => RapidCipherState.completed[label]);
+
+  if (won) {
+    document.getElementById("finalScore").innerText = RapidCipherState.score;
+    document.getElementById("victoryModal").classList.add("active");
   }
 }
 

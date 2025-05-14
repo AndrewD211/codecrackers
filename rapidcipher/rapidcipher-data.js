@@ -3,9 +3,9 @@ window.hintMessages = {
   "Caesar B": "The word 'WORLD' becomes ZRUOG with a Caesar shift of 3.",
   "Caesar C": "If you get FRGHV, you're on the right track.",
   "Caesar D": "Shift of 3 wraps letters from Z back to A.",
-  "Substitution A": "The word is reversed — read it backwards.",
-  "Substitution B": "The mapping flips start and end letters.",
-  "Substitution C": "Watch for palindromes in the reversed form.",
+  "Substitution A": "Use this map: S→D, E→Q, C→A, R→L, T→M",
+  "Substitution B": "Use this map: P→G, U→W, Z→K, L→N, E→T",
+  "Substitution C": "Use this map: L→P, O→X, C→Z, K→B, E→J, D→H",
   "Vigenère A": "Keyword is KEY — repeat it to match message length.",
   "Vigenère B": "Try decrypting ENCRYPT with keyword LOCK."
 };

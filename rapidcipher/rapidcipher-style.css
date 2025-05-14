@@ -154,3 +154,10 @@ body {
     margin-top: 1rem;
     font-weight: bold;
 }
+#victoryModal {
+  display: none;
+}
+
+#victoryModal.active {
+  display: block;
+}
