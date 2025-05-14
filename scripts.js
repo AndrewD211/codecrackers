@@ -150,17 +150,38 @@ function runCaesar() {
   if (mode === 'decrypt') shift = 26 - shift;
 
   let result = '';
+  const map = {}; // For building the diagram
+
+  for (let i = 0; i < 26; i++) {
+    const plainChar = String.fromCharCode(65 + i);
+    const shiftedChar = String.fromCharCode(65 + ((i + shift) % 26));
+    map[plainChar] = shiftedChar;
+  }
+
   for (let char of input) {
     if (char >= 'A' && char <= 'Z') {
-      const code = ((char.charCodeAt(0) - 65 + shift) % 26) + 65;
-      result += String.fromCharCode(code);
+      result += map[char];
     } else {
       result += char;
     }
   }
 
   document.getElementById('caesar-output').innerText = result;
+
+  // 🆕 Update the mapping diagram
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const shifted = alphabet.map(letter => map[letter]);
+  const diagram = `
+Plain:   ${alphabet.join(' ')}
+Shifted: ${shifted.join(' ')}
+  `.trim();
+
+  const diagramElement = document.getElementById('mapping-table');
+  if (diagramElement) {
+    diagramElement.innerHTML = `<pre>${diagram}</pre>`;
+  }
 }
+
 
 // Substitution Cipher Tool
 function generateRandomMap() {
