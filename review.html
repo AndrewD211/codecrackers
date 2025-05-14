@@ -63,7 +63,7 @@
         <p>This section lets you review all the ciphers you've learned so far. You'll find recaps, practice problems, and challenge puzzles to refresh your skills before taking the quizzes.</p>
 
         <h3>Caesar Cipher</h3>
-        <p>The Caesar Cipher is a simple letter shift. Each letter in your message is pushed forward (or backward) in the alphabet by a fixed number. Don’t forget: the alphabet wraps around — so shifting Z by +1 gives A.</p>
+        <p>The Caesar Cipher is a simple letter shift. Each letter in your message is pushed forward (or backward) in the alphabet by a fixed number. Don’t forget: the alphabet wraps around, so shifting Z by +1 gives A.</p>
         <p>Common mistake: forgetting to wrap around after Z or before A. Also, spaces and punctuation stay the same.</p>
         <ul>
           <li><strong>Encrypt:</strong> ZEBRAS with shift +4</li>
@@ -80,7 +80,7 @@
         </ul>
 
         <h3>Substitution Cipher</h3>
-        <p>Each letter is replaced by another letter based on a custom map — no shifting involved. The same letter always maps to the same substitute, so patterns can give you away.</p>
+        <p>Each letter is replaced by another letter based on a custom map, no shifting involved. The same letter always maps to the same substitute, so patterns can give you away.</p>
         <p>Watch out: no duplicates in the map. Spaces and symbols don’t change.</p>
         <ul>
           <li><strong>Encrypt:</strong> BEAD using A→Q, B→W, C→E, D→R, E→T...</li>
@@ -95,7 +95,7 @@
         </ul>
 
         <h3>Vigenère Cipher</h3>
-        <p>This is a Caesar Cipher on steroids — you use a keyword to apply different shifts to each letter. A = 0, B = 1, ..., Z = 25. The keyword repeats to match the message length.</p>
+        <p>This is a Caesar Cipher on steroids, you use a keyword to apply different shifts to each letter. A = 0, B = 1, ..., Z = 25. The keyword repeats to match the message length.</p>
         <p>Common mistake: misaligning the keyword with the message or shifting the wrong direction when decrypting.</p>
         <ul>
           <li><strong>Encrypt:</strong> CODES using keyword KEY</li>
